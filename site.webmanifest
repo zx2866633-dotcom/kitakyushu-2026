@@ -1,0 +1,9 @@
+{
+  "name": "기타큐슈 3박 4일 여행",
+  "short_name": "기타큐슈 여행",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#0f172a",
+  "icons": []
+}
