@@ -37,6 +37,16 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 .source{font-size:11.5px;color:#7c8798;margin-top:12px} .footer{text-align:center;color:#7c8798;font-size:12px;padding:15px 0 38px}
 @media(max-width:800px){.status,.weather{grid-column:span 6} .friend,.guide{grid-column:span 12} .pack{grid-column:span 6} .item{grid-template-columns:82px 20px 1fr;gap:7px} .del{grid-column:3;justify-self:start}}
 @media(max-width:470px){.status,.weather,.pack{grid-column:span 12} .links,.passgrid{grid-template-columns:1fr} .head{align-items:start;flex-direction:column} .money{grid-template-columns:1fr}}
+
+.passday{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:19px;overflow:hidden}
+.passday-title{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;background:#f8fafc;border-bottom:1px solid var(--line)}
+.passday-title b{font-size:15px}.passday-title span{font-size:11px;font-weight:900;color:#166534;background:#dcfce7;border-radius:999px;padding:4px 8px;white-space:nowrap}
+.passsteps{padding:5px 16px 11px}
+.passstep{display:grid;grid-template-columns:31px 1fr;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.passstep:last-child{border-bottom:0}
+.stepnum{width:27px;height:27px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#0f172a;color:#fff;font-size:12px;font-weight:900}
+.passstep b{font-size:14.5px}.passstep p{margin:3px 0 0;color:var(--muted);font-size:13px}
+
 </style>
 </head>
 <body>
@@ -52,7 +62,7 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 <section id="ready">
 <div class="head"><h2>출발 전 상태</h2><small>이제 핵심은 짐 챙기기</small></div>
 <div class="grid">
-<div class="card status"><b>내 준비</b><span>Touch Kyushu 구매 완료 · eSIM 구매 완료 · 일본 입국 준비 거의 완료</span></div>
+<div class="card status"><b>내 준비</b><span>Touch Kyushu · eSIM · 환전 ¥100,000 완료. 이제 짐과 출발 직전 확인만 남음.</span></div>
 <div class="card status"><b>전날 숙박</b><span>10/7 오송스테이 숙박 · 다음 날 아침 청주공항 이동에 집중</span></div>
 <div class="card status"><b>공항 목표</b><span>10/8 06:10~06:20 청주공항 도착. 오송스테이에서 05:45~05:50 택시 출발 권장.</span></div>
 
@@ -75,16 +85,68 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 <section id="weather"><div class="head"><h2>날씨 × 일정 교차검토</h2><small>10/5 기준, 예보사 간 편차 존재</small></div><div class="grid" id="weatherGrid"></div>
 <div class="notice" style="margin-top:13px"><b>현재 판단:</b> 10/8은 고쿠라 도보 관광에 좋고, 10/9 사라쿠라산도 일정 유지가 맞다. 가장 불확실한 날은 10/10으로 일부 예보는 맑음, 일부는 흐림·약한 비 가능성을 잡고 있다. 하지만 가라토시장은 토요일 일정 가치가 커서 날짜는 유지하고 접이식 우산과 페리 운항 확인으로 대응하는 편이 낫다.</div></section>
 
-<section id="plan"><div class="head"><h2>최종 일정</h2><small>삭제하면 일일 예상지출도 자동 재계산</small></div><div id="days"></div></section>
+<section id="plan"><div class="head"><h2>최종 일정</h2><small>날씨·피로도에 따라 자유롭게 삭제·변경</small></div><div id="days"></div></section>
 
-<section id="pass"><div class="head"><h2>Touch Kyushu 어디서 써야 하나</h2><small>10/9~10/10</small></div>
-<div class="passgrid">
-<div class="passbox"><b>10/9</b><span>고쿠라→스페이스월드 JR · Space LABO 상설전 · 스페이스월드→야하타 JR · 사라쿠라산 케이블카/슬로프카 · 야하타→고쿠라 JR</span></div>
-<div class="passbox"><b>10/10</b><span>고쿠라↔모지코 JR · 모지코 레트로 전망실 · 필요하면 간몬해협뮤지엄·구 오사카상선·구 모지미쓰이클럽 등 추가</span></div>
+<section id="pass">
+<div class="head"><h2>Touch Kyushu 실전 사용법</h2><small>10/9~10/10 · 어디서 무엇을 터치할지</small></div>
+<div class="notice"><b>제일 중요한 원칙</b><br>
+구매할 때 사용한 결제수단을 여행 중에도 그대로 사용한다. Apple Pay로 샀다면 같은 iPhone의 같은 카드를 사용하고, 실물카드로 샀다면 그 실물카드를 사용한다.
+JR에서는 <b>탈 때와 내릴 때 모두</b> 터치결제 전용 리더에 터치한다. 시설에서는 입구의 전용 단말기에 터치한다.
+교통계 IC카드나 다른 카드를 잘못 대면 일반 운임으로 처리될 수 있으니 Pass Case용 결제수단을 확실히 구분한다.</div>
+
+<div class="passgrid" style="margin-top:13px">
+<div class="passbox"><b>사용기간</b><span>2일권은 지정한 10/9과 다음 날 10/10에 유효. 마지막 날 25:00까지 이용 가능.</span></div>
+<div class="passbox"><b>JR 범위</b><span>가고시마 본선 모지코(門司港)~구로사키(黒崎). 보통·쾌속열차의 보통차 자유석만 이용.</span></div>
 </div>
+
 <div class="grid" style="margin-top:13px">
-<div class="card guide"><h3>패스 주의</h3><ul><li>JR은 모지코~구로사키 구간의 일반·쾌속 일반차 자유석이 대상.</li><li>Space LABO는 상설전만 포함. 플라네타륨·특별전은 별도.</li><li>Apple Pay로 Pass Case를 샀다면 같은 iPhone을 써야 하므로 배터리 관리가 중요.</li><li>THE OUTLETS에서는 Pass Case 화면 제시 특전이 있으니 안내센터부터 확인.</li></ul></div>
-<div class="card guide"><h3>몽벨 쇼핑</h3><ul><li>몽벨 야하타점은 THE OUTLETS KITAKYUSHU 1층, 10:00~20:00.</li><li>아웃렛 상품 취급, Visa 등 카드 결제 및 Tax-Free 가능.</li><li>친구가 몽벨을 꼭 살 예정이므로 13:15~15:15를 쇼핑 우선시간으로 확보.</li><li>사라쿠라산 일몰이 더 중요하므로 15:35 이후 쇼핑 연장은 하지 않는 것을 권장.</li></ul></div>
+<div class="card guide"><h3>JR 개찰구에서</h3><ul>
+<li>역에 들어갈 때 <b>タッチ決済 / Contactless</b> 표시가 있는 자동개찰기·폴형 리더·전용기기를 찾는다.</li>
+<li>Apple Pay로 구매했다면 구매한 카드를 iPhone에서 선택해 리더에 터치한다.</li>
+<li>목적지 역에서 나갈 때도 <b>같은 iPhone·같은 카드</b>로 다시 터치한다.</li>
+<li>JR에서는 Pass Case 화면 제시보다 구매에 사용한 결제수단의 터치가 핵심이다.</li>
+<li>특급 지정석이나 범위 밖 구간은 패스 대상이 아니다. 이번 일정에서는 보통·쾌속만 고르면 된다.</li>
+</ul></div>
+<div class="card guide"><h3>시설에서</h3><ul>
+<li>Space LABO, 사라쿠라산 케이블카·슬로프카, 모지코 레트로 전망실 등에서는 <b>입구의 Touch Kyushu 전용 단말기</b>에 같은 결제수단을 터치한다.</li>
+<li>Space LABO는 <b>상설전만</b> 패스 대상. 플라네타륨·특별전은 포함되지 않는다.</li>
+<li>기간 안에는 대상 JR 승차와 대상 시설 입장 횟수 제한이 없다.</li>
+<li>THE OUTLETS 같은 제휴 특전은 단말기 터치가 아니라 <b>Pass Case 화면 제시</b> 방식이므로 구분한다.</li>
+</ul></div>
+</div>
+
+<div class="passday"><div class="passday-title"><b>10/9 금요일 · 고쿠라 → Space LABO → 몽벨 → 사라쿠라산</b><span>PASS DAY 1</span></div><div class="passsteps">
+<div class="passstep"><span class="stepnum">1</span><div><b>고쿠라역 → 스페이스월드역</b><p>고쿠라역에서 <strong>JR 가고시마 본선(鹿児島本線)</strong> 서쪽 방향 열차를 탄다. 전광판에서 스페이스월드 정차 여부를 확인하고 보통 또는 쾌속을 선택. 들어갈 때와 스페이스월드역에서 나갈 때 모두 같은 iPhone/카드를 Touch 결제 리더에 터치.</p></div></div>
+<div class="passstep"><span class="stepnum">2</span><div><b>Space LABO 상설전</b><p>스페이스월드역에서 도보 이동. 입구 패스 전용 단말기에 구매 때 사용한 iPhone/카드를 터치. 상설전은 패스 대상이고 플라네타륨·특별전은 제외.</p></div></div>
+<div class="passstep"><span class="stepnum">3</span><div><b>THE OUTLETS KITAKYUSHU · 몽벨</b><p>Space LABO에서 아울렛으로 이동. 몽벨 쇼핑 전이나 후에 <strong>안내센터</strong>에서 Pass Case 화면을 보여주면 Touch Kyushu 제휴 쇼핑 특전을 받을 수 있다. 몽벨에서의 사용 가능 여부는 현장 확인.</p></div></div>
+<div class="passstep"><span class="stepnum">4</span><div><b>스페이스월드역 → 야하타역</b><p>가고시마 본선 서쪽 방향을 탄다. <strong>야하타(八幡)는 스페이스월드 다음 역</strong>. 승차·하차 때 각각 같은 결제수단으로 터치.</p></div></div>
+<div class="passstep"><span class="stepnum">5</span><div><b>야하타역 → 사라쿠라산 산록역</b><p>10/9은 평일이라 무료셔틀의 야하타역 첫 출발이 <strong>17:05</strong>. 일몰 여유를 위해 올라갈 때는 계획대로 택시가 안정적. 셔틀을 쓴다면 야하타역을 나와 <strong>로터리 왼쪽, 니시테츠 버스정류장 옆의 사라쿠라산 케이블카 표지</strong>를 찾는다.</p></div></div>
+<div class="passstep"><span class="stepnum">6</span><div><b>산록역 → 케이블카 → 슬로프카 → 정상</b><p>산록역 전용 단말기에 같은 iPhone/카드를 터치. <strong>산록역 → 케이블카 → 산상역 → 슬로프카 → 전망대역</strong> 순서. 케이블카 약 6분, 슬로프카 약 3분이며 둘 다 패스 대상.</p></div></div>
+<div class="passstep"><span class="stepnum">7</span><div><b>야경 후 → 야하타역 → 고쿠라역</b><p>내려온 뒤 무료셔틀 시간이 맞으면 산록역의 <strong>후모토 식당 옆 정류장</strong>에서 야하타역으로 이동. 야하타역에서는 가고시마 본선의 <strong>고쿠라·모지코 방향</strong> 보통/쾌속으로 복귀하며 입·출장 모두 터치.</p></div></div>
+</div></div>
+
+<div class="passday"><div class="passday-title"><b>10/10 토요일 · 고쿠라 → 모지코 → 가라토 → 모지코 → 고쿠라</b><span>PASS DAY 2</span></div><div class="passsteps">
+<div class="passstep"><span class="stepnum">1</span><div><b>고쿠라역 → 모지코역</b><p>고쿠라역에서 가고시마 본선의 <strong>모지코(門司港) 방향</strong> 열차를 탄다. 모지코는 종점. 고쿠라에서 들어갈 때와 모지코에서 나갈 때 같은 iPhone/카드를 터치.</p></div></div>
+<div class="passstep"><span class="stepnum">2</span><div><b>모지코 → 가라토 연락선</b><p><strong>페리는 Touch Kyushu 대상이 아니다.</strong> 패스를 터치하지 않고 별도 승선. 가라토시장과 아카마신궁도 패스 대상 시설이 아니다.</p></div></div>
+<div class="passstep"><span class="stepnum">3</span><div><b>모지코 복귀 후 패스 집중 사용</b><p>모지코 레트로 전망실에서는 입구 전용 단말기에 터치. 시간이 남으면 <strong>간몬해협뮤지엄, 구 오사카상선, 구 모지미쓰이클럽</strong>도 패스 대상이라 동선에 맞춰 추가 가능.</p></div></div>
+<div class="passstep"><span class="stepnum">4</span><div><b>모지코역 → 고쿠라역</b><p>가고시마 본선에서 <strong>고쿠라·구로사키·오리오·하카타 방면</strong> 열차 중 고쿠라에 정차하는 보통/쾌속 이용. 모지코 승차와 고쿠라 하차 시 모두 같은 결제수단으로 터치.</p></div></div>
+</div></div>
+
+<div class="grid" style="margin-top:13px">
+<div class="card guide"><h3>이번 여행에서 PASS가 안 되는 것</h3><ul>
+<li>10/8 고쿠라성: 패스 자체는 대상이지만 <b>시작일이 10/9</b>라 이날은 사용 불가.</li>
+<li>기타큐슈공항↔고쿠라 공항버스</li><li>야하타역↔산록역 택시</li><li>모지코↔가라토 연락선</li><li>가라토시장·아카마신궁·식당·카페·일반 쇼핑</li>
+</ul></div>
+<div class="card guide"><h3>문제 생겼을 때</h3><ul>
+<li>개찰구가 반응하지 않으면 여러 카드를 연속으로 대지 말고 구매에 사용한 카드가 맞는지 먼저 확인.</li>
+<li>Pass Case에서 10/9 시작 2일권이 정상 표시되는지 출발 전날 확인.</li>
+<li>시설이나 열차를 한 번이라도 이용한 뒤에는 환불 제한이 생길 수 있음.</li>
+<li>10/9~10/10은 iPhone 배터리와 보조배터리를 특히 신경 쓴다.</li>
+</ul></div></div>
+<div class="dayactions" style="padding:13px 0 0">
+<a class="btn dark" target="_blank" href="https://kitakyushu-tourpass.com/ko/">Touch Kyushu 공식 안내</a>
+<a class="btn" target="_blank" href="https://www.sarakurayama-cablecar.co.jp/shuttlebus/">사라쿠라산 무료셔틀 시간표</a>
+<a class="btn" target="_blank" href="https://www.sarakurayama-cablecar.co.jp/timetable/">케이블카·슬로프카 시간표</a>
 </div></section>
 
 <section id="taxfree"><div class="head"><h2>면세 · 세관 안내</h2><small>몽벨 쇼핑 시 확인</small></div>
@@ -100,7 +162,7 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 <section id="tips"><div class="head"><h2>놓치기 쉬운 팁</h2><small>출발 전날 다시 보기</small></div>
 <div class="grid">
 <div class="card guide"><h3>공항·수하물</h3><ul><li>08:20 국제선 + 위탁수하물이라 06:10~06:20 청주공항 도착 목표.</li><li>오송스테이에서는 05:45~05:50 택시 출발. 전날 밤 호출앱 예상시간도 한 번 확인.</li><li>위탁수하물 무게를 10/7 밤에 재고, 보조배터리는 반드시 기내가방.</li><li>오송스테이 체크인이 늦더라도 다음날 조식보다 공항 도착시간을 우선.</li></ul></div>
-<div class="card guide"><h3>결제</h3><ul><li>현대 Visa/Apple Pay + 현금 약 ¥20,000/인 조합이면 충분.</li><li>트래블월렛은 필수 아님. 대신 해외결제 가능한 실물카드 1장은 백업으로 권장.</li><li>해외 카드 결제 시 원화(KRW) 대신 엔화(JPY) 결제를 선택.</li><li>가라토시장·소형 매장용으로 ¥1,000권을 여러 장 준비.</li></ul></div>
+<div class="card guide"><h3>결제</h3><ul><li>엔화 ¥100,000 환전 완료. 현금과 현대 Visa/Apple Pay를 상황에 따라 병행.</li><li>트래블월렛은 필수 아님. 해외결제 가능한 실물카드 1장은 백업으로 챙기기.</li><li>해외 카드 결제 시 원화(KRW) 대신 엔화(JPY) 결제를 선택.</li><li>시장·소형 매장에서는 소액권을 따로 꺼내 쓰면 편함.</li></ul></div>
 <div class="card guide"><h3>날씨·복장</h3><ul><li>낮은 20도 중후반이라 두꺼운 외투는 불필요.</li><li>반팔/얇은 긴팔 + 긴바지 + 얇은 바람막이면 충분.</li><li>사라쿠라산 정상과 모지코 해안은 체감온도가 더 낮고 바람이 강할 수 있음.</li><li>접이식 우산은 10/10 예보 편차 때문에 꼭 챙기기.</li></ul></div>
 <div class="card guide"><h3>현지 동선</h3><ul><li>10/9 아울렛에서 몽벨을 먼저 끝내고, 15:35에는 무조건 야하타 이동 준비.</li><li>10/10 가라토 도착 후 돌아오는 페리 시간을 먼저 확인하면 마음이 편함.</li><li>DAY 3이 가장 많이 걷는 날이라 전망실 이후 피곤하면 일찍 복귀.</li><li>모든 계획은 ‘달성해야 하는 체크리스트’가 아니라 선택지 모음으로 생각하기.</li></ul></div>
 </div>
@@ -110,9 +172,8 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 </main>
 
 <script>
-const DATA={"trip": {"pre": {"title": "10/7 · 오송 전날 숙박", "subtitle": "오송스테이 · 다음 날 08:20 국제선 대비", "currency": "KRW", "items": [{"time": "저녁", "name": "각자 오송스테이로 이동", "desc": "친구 출발지는 미정. 네이버지도에서 목적지만 열고 각자 출발지를 선택.", "cost": [0, 0], "tag": "국내 이동비 별도", "kind": "route"}, {"time": "16:00 이후", "name": "오송스테이 체크인", "desc": "충북 청주시 흥덕구 오송읍 봉산2길 76-9 · 오송역 도보 약 3분권.", "cost": [0, 0], "tag": "숙박비 별도", "kind": "hotel"}, {"time": "취침 전", "name": "출국 최종 점검", "desc": "여권 · 항공권 · Visit Japan Web · Pass Case · eSIM · 카드 · 현금 · 약 · 위탁수하물 무게.", "cost": [0, 0], "tag": "중요", "kind": "warn"}, {"time": "05:35~05:40", "name": "기상", "desc": "캐리어는 전날 밤 완성. 세면과 귀중품만 챙기고 바로 출발 준비.", "cost": [0, 0], "tag": "일찍 취침", "kind": "free"}, {"time": "05:45~05:50", "name": "오송스테이 → 청주공항", "desc": "택시 권장. 오송역↔청주공항 공식 안내 기준 약 30분·약 25,000원 수준.", "cost": [12500, 15000], "tag": "2인 분담 예상", "kind": "route"}, {"time": "06:10~06:20", "name": "청주공항 도착 목표", "desc": "08:20 국제선 + 위탁수하물 기준. 약 2시간 전 도착을 목표로 여유 있게 체크인.", "cost": [0, 0], "tag": "권장 도착", "kind": "warn"}]}, "d1": {"title": "10/8 · 고쿠라", "subtitle": "입국 → 고쿠라 시내 · 고쿠라성", "currency": "JPY", "items": [{"time": "08:20", "name": "청주 출발 RF374", "desc": "당일 게이트·운항상태 재확인.", "cost": [0, 0], "tag": "위탁수하물", "kind": "warn"}, {"time": "09:30경", "name": "기타큐슈공항 도착", "desc": "입국심사 → 수하물 → 세관.", "cost": [0, 0], "tag": "Visit Japan Web", "kind": "free"}, {"time": "10:20~11:20", "name": "공항 → 고쿠라역", "desc": "공항버스 이용.", "cost": [710, 710], "tag": "약 ¥710", "kind": "route"}, {"time": "11:20~11:40", "name": "Smile Hotel Kokura 짐 보관", "desc": "고쿠라역에서 도보 이동.", "cost": [0, 0], "tag": "도보", "kind": "free"}, {"time": "11:40~12:20", "name": "교마치·우오마치 상점가", "desc": "숙소 주변 아케이드 산책.", "cost": [0, 0], "tag": "도보", "kind": "free"}, {"time": "12:20~13:20", "name": "탄가시장 + 점심", "desc": "소액 현금이 편한 구간.", "cost": [1000, 1500], "tag": "식사", "kind": "cash"}, {"time": "13:30~15:00", "name": "고쿠라성", "desc": "패스 사용 전날이라 개별 결제.", "cost": [500, 700], "tag": "¥500~700", "kind": "cash"}, {"time": "15:00~16:00", "name": "리버워크·카페", "desc": "첫날 피로 회복용 휴식.", "cost": [500, 1000], "tag": "카페", "kind": "cash"}, {"time": "16:00~17:00", "name": "호텔 체크인·휴식", "desc": "무리해서 일정 추가하지 않기.", "cost": [0, 0], "tag": "휴식", "kind": "free"}, {"time": "18:00~", "name": "고쿠라 저녁", "desc": "야키우동·야키토리·이자카야·라멘 중 현장에서 결정.", "cost": [2500, 4000], "tag": "저녁", "kind": "cash"}]}, "d2": {"title": "10/9 · Space LABO + 사라쿠라산", "subtitle": "Touch Kyushu 1일차 · THE OUTLETS에서 몽벨 구매", "currency": "JPY", "items": [{"time": "09:20~10:00", "name": "고쿠라 → 스페이스월드", "desc": "JR 일반·쾌속. 패스 대상 구간.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "10:00~12:15", "name": "Space LABO", "desc": "상설전은 패스 포함. 플라네타륨·특별전은 별도.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "12:15~13:15", "name": "점심", "desc": "THE OUTLETS 인근.", "cost": [1000, 1500], "tag": "식사", "kind": "cash"}, {"time": "13:15~15:15", "name": "THE OUTLETS KITAKYUSHU · 몽벨 우선", "desc": "몽벨 야하타점은 1층, 10:00~20:00, 아웃렛 상품 취급·면세 가능. 친구 구매를 먼저 끝낸다.", "cost": [500, 1000], "tag": "쇼핑금액 별도", "kind": "shop"}, {"time": "구매 시", "name": "몽벨 면세 처리", "desc": "여권 지참. 현재 제도상 같은 면세점에서 하루 세전 ¥5,000 이상 일반물품이면 면세 대상. 10/8~11 여행은 11월 개편 전이라 매장에서 즉시 면세 방식.", "cost": [0, 0], "tag": "여권 필수", "kind": "warn"}, {"time": "15:15~15:35", "name": "패스 특전 확인", "desc": "THE OUTLETS 안내센터에서 Pass Case 화면 제시 후 ¥1,000 쇼핑권 특전 확인. 5,000엔 이상 구매 시 사용 조건. 몽벨 적용 가능 여부는 현장 확인.", "cost": [0, 0], "tag": "PASS 특전", "kind": "pass"}, {"time": "15:45~16:10", "name": "스페이스월드 → 야하타", "desc": "JR 한 정거장. 패스 이용.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "16:10~16:25", "name": "야하타역 → 산록역", "desc": "일몰 시간 확보를 위해 택시 권장.", "cost": [600, 900], "tag": "2인 분담 예상", "kind": "route"}, {"time": "16:30~17:00", "name": "케이블카·슬로프카 → 정상", "desc": "둘 다 패스 포함.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "17:00~18:40", "name": "사라쿠라산 일몰·야경", "desc": "구름·강풍이면 체류시간 축소. 날씨가 나쁘면 과감히 삭제 가능.", "cost": [0, 0], "tag": "날씨 중요", "kind": "warn"}, {"time": "19:30~", "name": "고쿠라 복귀·저녁", "desc": "JR은 패스 이용.", "cost": [2500, 4000], "tag": "저녁", "kind": "cash"}]}, "d3": {"title": "10/10 · 모지코 + 가라토시장", "subtitle": "Touch Kyushu 2일차 · 메인 관광일", "currency": "JPY", "items": [{"time": "07:55~08:35", "name": "호텔 → 고쿠라 → 모지코", "desc": "JR 일반·쾌속. 패스 이용.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "08:50~09:00", "name": "모지코 → 가라토 페리", "desc": "기상·운항사정에 따라 시간 변동 가능.", "cost": [400, 400], "tag": "편도 ¥400", "kind": "route"}, {"time": "09:00~10:45", "name": "가라토시장", "desc": "스시·복어·참치·우니 등을 조금씩. ¥1,000권 여러 장이 편함.", "cost": [2500, 4000], "tag": "먹거리", "kind": "cash"}, {"time": "10:50~11:30", "name": "아카마신궁", "desc": "시장과 도보 이동.", "cost": [0, 0], "tag": "도보", "kind": "free"}, {"time": "11:40~12:10", "name": "가라토 → 모지코 페리", "desc": "돌아오는 배 시간 먼저 확인.", "cost": [400, 400], "tag": "편도 ¥400", "kind": "route"}, {"time": "12:10~14:30", "name": "모지코 레트로 산책·카페", "desc": "항구·근대건축·사진.", "cost": [500, 1000], "tag": "카페", "kind": "cash"}, {"time": "14:30~15:30", "name": "야키카레", "desc": "모지코 대표 음식.", "cost": [1200, 1800], "tag": "식사", "kind": "cash"}, {"time": "15:30~17:30", "name": "모지코 레트로 전망실", "desc": "패스 포함. 여유 있으면 간몬해협뮤지엄·구 오사카상선·구 모지미쓰이클럽도 패스 대상.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "17:30~18:30", "name": "모지코 → 고쿠라", "desc": "JR 패스 이용.", "cost": [0, 0], "tag": "PASS", "kind": "pass"}, {"time": "20:00~", "name": "마지막 저녁", "desc": "야키니쿠 또는 이자카야.", "cost": [2500, 4000], "tag": "저녁", "kind": "cash"}]}, "d4": {"title": "10/11 · 귀국", "subtitle": "고쿠라 → 기타큐슈공항 → 청주", "currency": "JPY", "items": [{"time": "07:30~08:10", "name": "기상·간단한 아침", "desc": "편의점 또는 근처 식사.", "cost": [700, 1500], "tag": "아침", "kind": "cash"}, {"time": "08:10~08:30", "name": "체크아웃 → 고쿠라역", "desc": "도보 이동.", "cost": [0, 0], "tag": "도보", "kind": "free"}, {"time": "09:00~09:40", "name": "고쿠라 → 기타큐슈공항", "desc": "공항버스. 승차 위치와 실제 출발시간 당일 재확인.", "cost": [710, 710], "tag": "약 ¥710", "kind": "route"}, {"time": "09:40~11:30", "name": "체크인·출국·간식", "desc": "면세품을 샀다면 여권과 구매품을 바로 제시할 수 있게 정리.", "cost": [500, 1000], "tag": "간식", "kind": "cash"}, {"time": "11:55", "name": "기타큐슈 출발 RF373", "desc": "전날 운항상태 재확인.", "cost": [0, 0], "tag": "귀국", "kind": "free"}]}}, "weather": [{"date": "10/8", "title": "맑음 우세", "temp": "약 24~27℃ / 15~17℃", "rain": "강수 0~30% 범위", "plan": "고쿠라 도보 일정에 매우 유리. 낮엔 반팔도 가능, 아침·저녁은 얇은 겉옷."}, {"date": "10/9", "title": "맑음~구름", "temp": "약 26~29℃ / 16~22℃", "rain": "강수 5~40% 범위", "plan": "사라쿠라산 일정 유지. 다만 정상은 바람·구름 영향을 크게 받으므로 15시쯤 시야와 풍속 재확인."}, {"date": "10/10", "title": "맑음~흐림, 예보 편차 큼", "temp": "약 27~29℃ / 21℃ 전후", "rain": "강수 0~41% 범위", "plan": "모지코·가라토는 진행 가능하되 접이식 우산 필수. 페리 운항은 바람이 강하면 현장에서 확인."}, {"date": "10/11", "title": "대체로 맑음~간헐적 소나기 가능", "temp": "약 27~30℃ / 21℃ 전후", "rain": "강수 0~20% 범위", "plan": "귀국 이동에는 큰 문제 가능성 낮음. 우산은 기내가방 가까이에."}], "packing": [["기내/몸에 지닐 것", ["여권", "휴대폰 + 충전 케이블", "보조배터리(위탁수하물 금지)", "해외결제 실물카드 1장 이상", "현금 약 ¥20,000/인", "항공권·호텔 예약 캡처", "Visit Japan Web QR", "Pass Case 로그인 확인", "복용약(알로푸리놀 여행분 + 여유분, 가능하면 원포장)", "이어폰", "볼펜 1개"]], ["캐리어", ["속옷·양말 4~5세트", "상의 3~4장", "긴바지 2벌", "얇은 바람막이/후드 1벌", "편한 운동화", "잠옷", "세면도구·면도기", "접이식 우산", "Type A 플러그 변환 어댑터", "지퍼백·빨래봉투", "여분 마스크/휴지"]], ["출발 직전", ["위탁수하물 무게 확인", "iPhone·보조배터리 100% 충전", "eSIM 활성화 방법 다시 확인", "친구 Visit Japan Web 완료 확인", "친구 Touch Kyushu 10/9 시작 2일권 확인", "10/9 사라쿠라산 날씨·풍속 확인 예정", "해외결제 차단 여부 확인"]]]};
-const money=(n,c)=>c==='KRW'?'₩'+Math.round(n).toLocaleString('ko-KR'):'¥'+Math.round(n).toLocaleString('ja-JP');
-const removed=new Set(JSON.parse(localStorage.getItem('kk_removed_v6')||'[]'));
+const DATA={"trip":{"pre":{"title":"10/7 · 오송 전날 숙박","subtitle":"오송스테이 · 다음 날 08:20 국제선 대비","items":[{"time":"저녁","name":"각자 오송스테이로 이동","desc":"친구 출발지는 미정. 네이버지도에서 목적지만 열고 각자 출발지를 선택.","tag":"국내 이동비 별도","kind":"route"},{"time":"16:00 이후","name":"오송스테이 체크인","desc":"충북 청주시 흥덕구 오송읍 봉산2길 76-9 · 오송역 도보 약 3분권.","tag":"숙박비 별도","kind":"hotel"},{"time":"취침 전","name":"출국 최종 점검","desc":"여권 · 항공권 · Visit Japan Web · Pass Case · eSIM · 카드 · 현금 · 위탁수하물 무게.","tag":"중요","kind":"warn"},{"time":"05:35~05:40","name":"기상","desc":"캐리어는 전날 밤 완성. 세면과 귀중품만 챙기고 바로 출발 준비.","tag":"일찍 취침","kind":"free"},{"time":"05:45~05:50","name":"오송스테이 → 청주공항","desc":"택시 권장. 오송역에서 청주공항까지 약 30분을 기준으로 잡고 아침 여유시간을 확보.","tag":"택시 이동","kind":"route"},{"time":"06:10~06:20","name":"청주공항 도착 목표","desc":"08:20 국제선 + 위탁수하물 기준. 약 2시간 전 도착을 목표로 여유 있게 체크인.","tag":"권장 도착","kind":"warn"}]},"d1":{"title":"10/8 · 고쿠라","subtitle":"입국 → 고쿠라 시내 · 고쿠라성","items":[{"time":"08:20","name":"청주 출발 RF374","desc":"당일 게이트·운항상태 재확인.","tag":"위탁수하물","kind":"warn"},{"time":"09:30경","name":"기타큐슈공항 도착","desc":"입국심사 → 수하물 → 세관.","tag":"Visit Japan Web","kind":"free"},{"time":"10:20~11:20","name":"공항 → 고쿠라역","desc":"공항버스 이용. 도착 후 버스 승차 위치를 확인하고 고쿠라역으로 이동.","tag":"공항버스","kind":"route"},{"time":"11:20~11:40","name":"Smile Hotel Kokura 짐 보관","desc":"고쿠라역에서 도보 이동.","tag":"도보","kind":"free"},{"time":"11:40~12:20","name":"교마치·우오마치 상점가","desc":"숙소 주변 아케이드 산책.","tag":"도보","kind":"free"},{"time":"12:20~13:20","name":"탄가시장 + 점심","desc":"시장 구경과 점심. 작은 매장은 현금이 편할 수 있음.","tag":"점심","kind":"cash"},{"time":"13:30~15:00","name":"고쿠라성","desc":"Touch Kyushu 시작일은 10/9라서 이날은 패스를 사용할 수 없음.","tag":"10/8 패스 미사용","kind":"warn"},{"time":"15:00~16:00","name":"리버워크·카페","desc":"첫날 피로 회복용 휴식.","tag":"카페","kind":"cash"},{"time":"16:00~17:00","name":"호텔 체크인·휴식","desc":"무리해서 일정 추가하지 않기.","tag":"휴식","kind":"free"},{"time":"18:00~","name":"고쿠라 저녁","desc":"야키우동·야키토리·이자카야·라멘 중 현장에서 결정.","tag":"저녁","kind":"cash"}]},"d2":{"title":"10/9 · Space LABO + 사라쿠라산","subtitle":"Touch Kyushu 1일차 · THE OUTLETS에서 몽벨 구매","items":[{"time":"09:20~10:00","name":"고쿠라 → 스페이스월드","desc":"JR 일반·쾌속. 패스 대상 구간.","tag":"PASS","kind":"pass"},{"time":"10:00~12:15","name":"Space LABO","desc":"상설전은 패스 포함. 플라네타륨·특별전은 별도.","tag":"PASS","kind":"pass"},{"time":"12:15~13:15","name":"점심","desc":"THE OUTLETS 인근에서 점심.","tag":"점심","kind":"cash"},{"time":"13:15~15:15","name":"THE OUTLETS KITAKYUSHU · 몽벨 우선","desc":"몽벨 야하타점은 1층. 아웃렛 상품 취급·면세 가능. 친구 몽벨 구매를 먼저 끝낸다.","tag":"몽벨 우선","kind":"shop"},{"time":"구매 시","name":"몽벨 면세 처리","desc":"여권 지참. Tax-Free 대상 여부를 매장에서 확인하고 여권으로 면세 처리.","tag":"여권 필수","kind":"warn"},{"time":"15:15~15:35","name":"패스 특전 확인","desc":"THE OUTLETS 안내센터에서 Pass Case 화면을 보여주고 쇼핑 특전을 확인. 몽벨에서 사용할 수 있는지는 현장에서 확인.","tag":"PASS 특전","kind":"pass"},{"time":"15:45~16:10","name":"스페이스월드 → 야하타","desc":"JR 한 정거장. 패스 이용.","tag":"PASS","kind":"pass"},{"time":"16:10~16:25","name":"야하타역 → 산록역","desc":"10/9은 금요일이라 무료 셔틀 첫차가 늦다. 일몰 여유를 위해 올라갈 때는 택시 권장.","tag":"택시 권장","kind":"route"},{"time":"16:30~17:00","name":"케이블카·슬로프카 → 정상","desc":"둘 다 패스 포함.","tag":"PASS","kind":"pass"},{"time":"17:00~18:40","name":"사라쿠라산 일몰·야경","desc":"구름·강풍이면 체류시간 축소. 날씨가 나쁘면 과감히 삭제 가능.","tag":"날씨 중요","kind":"warn"},{"time":"19:30~","name":"고쿠라 복귀·저녁","desc":"사라쿠라산에서 내려온 뒤 야하타역으로 이동하고 JR 패스로 고쿠라 복귀.","tag":"JR PASS","kind":"pass"}]},"d3":{"title":"10/10 · 모지코 + 가라토시장","subtitle":"Touch Kyushu 2일차 · 메인 관광일","items":[{"time":"07:55~08:35","name":"호텔 → 고쿠라 → 모지코","desc":"JR 일반·쾌속. 패스 이용.","tag":"PASS","kind":"pass"},{"time":"08:50~09:00","name":"모지코 → 가라토 페리","desc":"간몬 연락선 이용. 이 구간은 Touch Kyushu 대상이 아니며 기상·운항상황을 현장에서 확인.","tag":"PASS 제외","kind":"route"},{"time":"09:00~10:45","name":"가라토시장","desc":"스시·복어·참치·우니 등을 조금씩. 작은 매장은 현금 소액권이 편함.","tag":"시장","kind":"cash"},{"time":"10:50~11:30","name":"아카마신궁","desc":"시장과 도보 이동.","tag":"도보","kind":"free"},{"time":"11:40~12:10","name":"가라토 → 모지코 페리","desc":"돌아오는 배 시간을 먼저 확인. 페리는 Touch Kyushu 대상이 아님.","tag":"PASS 제외","kind":"route"},{"time":"12:10~14:30","name":"모지코 레트로 산책·카페","desc":"항구·근대건축·사진.","tag":"카페","kind":"cash"},{"time":"14:30~15:30","name":"야키카레","desc":"모지코 대표 음식.","tag":"식사","kind":"cash"},{"time":"15:30~17:30","name":"모지코 레트로 전망실","desc":"패스 포함. 여유 있으면 간몬해협뮤지엄·구 오사카상선·구 모지미쓰이클럽도 패스 대상.","tag":"PASS","kind":"pass"},{"time":"17:30~18:30","name":"모지코 → 고쿠라","desc":"JR 패스 이용.","tag":"PASS","kind":"pass"},{"time":"20:00~","name":"마지막 저녁","desc":"야키니쿠 또는 이자카야.","tag":"저녁","kind":"cash"}]},"d4":{"title":"10/11 · 귀국","subtitle":"고쿠라 → 기타큐슈공항 → 청주","items":[{"time":"07:30~08:10","name":"기상·간단한 아침","desc":"편의점 또는 근처 식사.","tag":"아침","kind":"cash"},{"time":"08:10~08:30","name":"체크아웃 → 고쿠라역","desc":"도보 이동.","tag":"도보","kind":"free"},{"time":"09:00~09:40","name":"고쿠라 → 기타큐슈공항","desc":"공항버스 이용. Touch Kyushu는 10/10에 종료되므로 공항버스에는 사용하지 않음.","tag":"공항버스","kind":"route"},{"time":"09:40~11:30","name":"체크인·출국·간식","desc":"면세품을 샀다면 여권과 구매품을 바로 제시할 수 있게 정리.","tag":"간식","kind":"cash"},{"time":"11:55","name":"기타큐슈 출발 RF373","desc":"전날 운항상태 재확인.","tag":"귀국","kind":"free"}]}},"weather":[{"date":"10/8","title":"맑음 우세","temp":"약 24~27℃ / 15~17℃","rain":"강수 0~30% 범위","plan":"고쿠라 도보 일정에 매우 유리. 낮엔 반팔도 가능, 아침·저녁은 얇은 겉옷."},{"date":"10/9","title":"맑음~구름","temp":"약 26~29℃ / 16~22℃","rain":"강수 5~40% 범위","plan":"사라쿠라산 일정 유지. 다만 정상은 바람·구름 영향을 크게 받으므로 15시쯤 시야와 풍속 재확인."},{"date":"10/10","title":"맑음~흐림, 예보 편차 큼","temp":"약 27~29℃ / 21℃ 전후","rain":"강수 0~41% 범위","plan":"모지코·가라토는 진행 가능하되 접이식 우산 필수. 페리 운항은 바람이 강하면 현장에서 확인."},{"date":"10/11","title":"대체로 맑음~간헐적 소나기 가능","temp":"약 27~30℃ / 21℃ 전후","rain":"강수 0~20% 범위","plan":"귀국 이동에는 큰 문제 가능성 낮음. 우산은 기내가방 가까이에."}],"packing":[["기내/몸에 지닐 것",["여권","휴대폰 + 충전 케이블","보조배터리(위탁수하물 금지)","해외결제 실물카드 1장 이상","현금 ¥100,000 챙기기(환전 완료)","항공권·호텔 예약 캡처","Visit Japan Web QR","Pass Case 로그인 확인","이어폰","볼펜 1개"]],["캐리어",["속옷·양말 4~5세트","상의 3~4장","긴바지 2벌","얇은 바람막이/후드 1벌","편한 운동화","잠옷","세면도구·면도기","접이식 우산","Type A 플러그 변환 어댑터","지퍼백·빨래봉투","여분 마스크/휴지"]],["출발 직전",["위탁수하물 무게 확인","iPhone·보조배터리 100% 충전","eSIM 활성화 방법 다시 확인","친구 Visit Japan Web 완료 확인","친구 Touch Kyushu 10/9 시작 2일권 확인","10/9 사라쿠라산 날씨·풍속 확인 예정","해외결제 차단 여부 확인"]]]};
+const removed=new Set(JSON.parse(localStorage.getItem('kk_removed_v7')||'[]'));
 
 function drawWeather(){
   const g=document.getElementById('weatherGrid');
@@ -124,37 +185,33 @@ function drawWeather(){
 function tagClass(k){return ['pass','warn','cash','route','hotel','free','shop'].includes(k)?k:'free'}
 function drawDays(){
  const host=document.getElementById('days');
- Object.entries(DATA.trip).forEach(([key,day],idx)=>{
+ Object.entries(DATA.trip).forEach(([key,day])=>{
   let body='';
   day.items.forEach((x,i)=>{
     const id=key+'-'+i, hidden=removed.has(id)?' hidden':'';
-    body+=`<div class="item${hidden}" data-id="${id}" data-day="${key}" data-min="${x.cost[0]}" data-max="${x.cost[1]}">
-      <div class="time">${x.time}</div><div class="dotcol"><div class="dot"></div></div>
-      <div class="event"><b>${x.name}</b><p>${x.desc}</p><span class="tag ${tagClass(x.kind)}">${x.tag}</span></div>
-      <button class="del" onclick="removePlan('${id}')">삭제</button></div>`;
+    body+=\`<div class="item\${hidden}" data-id="\${id}" data-day="\${key}">
+      <div class="time">\${x.time}</div><div class="dotcol"><div class="dot"></div></div>
+      <div class="event"><b>\${x.name}</b><p>\${x.desc}</p><span class="tag \${tagClass(x.kind)}">\${x.tag}</span></div>
+      <button class="del" onclick="removePlan('\\'\${id}\\'')">삭제</button></div>\`;
   });
-  const mapButtons = key==='pre' ? `<a class="btn dark" target="_blank" href="https://map.naver.com/p/search/%EC%98%A4%EC%86%A1%EC%8A%A4%ED%85%8C%EC%9D%B4">네이버지도 오송스테이</a><a class="btn" target="_blank" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD">네이버지도 청주공항</a>` :
-   key==='d1' ? `<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Smile+Hotel+Kokura&destination=Riverwalk+Kitakyushu&waypoints=Uomachi+Gintengai%7CTanga+Market%7CKokura+Castle&travelmode=walking">DAY 1 Google Maps</a>` :
-   key==='d2' ? `<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Space+LABO+Kitakyushu&travelmode=transit">Space LABO</a><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=mont-bell+Yahata+THE+OUTLETS+KITAKYUSHU">몽벨 야하타점</a>` :
-   key==='d3' ? `<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Mojiko+Station,+Kitakyushu&travelmode=transit">고쿠라→모지코</a>` :
-   `<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Kitakyushu+Airport&travelmode=transit">공항 이동</a>`;
-  host.insertAdjacentHTML('beforeend',`<div class="day"><div class="dayhead"><h3>${day.title}</h3><p>${day.subtitle}</p><div class="budget">예상지출 <span data-budget="${key}"></span> · 숙박/항공/쇼핑 제외</div></div><div class="timeline">${body}</div><div class="dayactions">${mapButtons}<button class="btn red" onclick="restoreDay('${key}')">이날 삭제 일정 복원</button></div></div>`);
- });
- updateBudgets();
-}
-
-function updateBudgets(){
- Object.entries(DATA.trip).forEach(([key,day])=>{
-   let lo=0,hi=0;
-   document.querySelectorAll(`.item[data-day="${key}"]`).forEach(el=>{
-     if(!removed.has(el.dataset.id)){lo+=+el.dataset.min;hi+=+el.dataset.max}
-   });
-   const out=document.querySelector(`[data-budget="${key}"]`);
-   if(out) out.textContent=lo===hi?money(lo,day.currency):money(lo,day.currency)+'~'+money(hi,day.currency);
+  const mapButtons = key==='pre' ? \`<a class="btn dark" target="_blank" href="https://map.naver.com/p/search/%EC%98%A4%EC%86%A1%EC%8A%A4%ED%85%8C%EC%9D%B4">네이버지도 오송스테이</a><a class="btn" target="_blank" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD">네이버지도 청주공항</a>\` :
+   key==='d1' ? \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Smile+Hotel+Kokura&destination=Riverwalk+Kitakyushu&waypoints=Uomachi+Gintengai%7CTanga+Market%7CKokura+Castle&travelmode=walking">DAY 1 Google Maps</a>\` :
+   key==='d2' ? \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Space+LABO+Kitakyushu&travelmode=transit">Space LABO 이동</a><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=mont-bell+Yahata+THE+OUTLETS+KITAKYUSHU">몽벨 야하타점</a><a class="btn" href="#pass">패스 실전 사용법</a>\` :
+   key==='d3' ? \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Mojiko+Station,+Kitakyushu&travelmode=transit">고쿠라→모지코</a><a class="btn" href="#pass">패스 실전 사용법</a>\` :
+   \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Kitakyushu+Airport&travelmode=transit">공항 이동</a>\`;
+  host.insertAdjacentHTML('beforeend',\`<div class="day"><div class="dayhead"><h3>\${day.title}</h3><p>\${day.subtitle}</p></div><div class="timeline">\${body}</div><div class="dayactions">\${mapButtons}<button class="btn red" onclick="restoreDay('\\'\${key}\\'')">이날 삭제 일정 복원</button></div></div>\`);
  });
 }
-function removePlan(id){removed.add(id);localStorage.setItem('kk_removed_v6',JSON.stringify([...removed]));document.querySelector(`.item[data-id="${id}"]`)?.classList.add('hidden');updateBudgets()}
-function restoreDay(day){document.querySelectorAll(`.item[data-day="${day}"]`).forEach(el=>removed.delete(el.dataset.id));localStorage.setItem('kk_removed_v6',JSON.stringify([...removed]));document.querySelectorAll(`.item[data-day="${day}"]`).forEach(el=>el.classList.remove('hidden'));updateBudgets()}
+function removePlan(id){
+  removed.add(id);
+  localStorage.setItem('kk_removed_v7',JSON.stringify([...removed]));
+  document.querySelector(\`.item[data-id="\${id}"]\`)?.classList.add('hidden');
+}
+function restoreDay(day){
+  document.querySelectorAll(\`.item[data-day="\${day}"]\`).forEach(el=>removed.delete(el.dataset.id));
+  localStorage.setItem('kk_removed_v7',JSON.stringify([...removed]));
+  document.querySelectorAll(\`.item[data-day="\${day}"]\`).forEach(el=>el.classList.remove('hidden'));
+}
 
 function drawPacking(){
  const g=document.getElementById('packingGrid');
