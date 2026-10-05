@@ -185,32 +185,58 @@ function drawWeather(){
 function tagClass(k){return ['pass','warn','cash','route','hotel','free','shop'].includes(k)?k:'free'}
 function drawDays(){
  const host=document.getElementById('days');
- Object.entries(DATA.trip).forEach(([key,day])=>{
+ Object.entries(DATA.trip).forEach(function(entry){
+  const key=entry[0], day=entry[1];
   let body='';
-  day.items.forEach((x,i)=>{
+  day.items.forEach(function(x,i){
     const id=key+'-'+i, hidden=removed.has(id)?' hidden':'';
-    body+=\`<div class="item\${hidden}" data-id="\${id}" data-day="\${key}">
-      <div class="time">\${x.time}</div><div class="dotcol"><div class="dot"></div></div>
-      <div class="event"><b>\${x.name}</b><p>\${x.desc}</p><span class="tag \${tagClass(x.kind)}">\${x.tag}</span></div>
-      <button class="del" onclick="removePlan('\\'\${id}\\'')">삭제</button></div>\`;
+    body += '<div class="item'+hidden+'" data-id="'+id+'" data-day="'+key+'">'
+      + '<div class="time">'+x.time+'</div><div class="dotcol"><div class="dot"></div></div>'
+      + '<div class="event"><b>'+x.name+'</b><p>'+x.desc+'</p><span class="tag '+tagClass(x.kind)+'">'+x.tag+'</span></div>'
+      + '<button class="del" data-remove="'+id+'">삭제</button></div>';
   });
-  const mapButtons = key==='pre' ? \`<a class="btn dark" target="_blank" href="https://map.naver.com/p/search/%EC%98%A4%EC%86%A1%EC%8A%A4%ED%85%8C%EC%9D%B4">네이버지도 오송스테이</a><a class="btn" target="_blank" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD">네이버지도 청주공항</a>\` :
-   key==='d1' ? \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Smile+Hotel+Kokura&destination=Riverwalk+Kitakyushu&waypoints=Uomachi+Gintengai%7CTanga+Market%7CKokura+Castle&travelmode=walking">DAY 1 Google Maps</a>\` :
-   key==='d2' ? \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Space+LABO+Kitakyushu&travelmode=transit">Space LABO 이동</a><a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=mont-bell+Yahata+THE+OUTLETS+KITAKYUSHU">몽벨 야하타점</a><a class="btn" href="#pass">패스 실전 사용법</a>\` :
-   key==='d3' ? \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Mojiko+Station,+Kitakyushu&travelmode=transit">고쿠라→모지코</a><a class="btn" href="#pass">패스 실전 사용법</a>\` :
-   \`<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Kitakyushu+Airport&travelmode=transit">공항 이동</a>\`;
-  host.insertAdjacentHTML('beforeend',\`<div class="day"><div class="dayhead"><h3>\${day.title}</h3><p>\${day.subtitle}</p></div><div class="timeline">\${body}</div><div class="dayactions">\${mapButtons}<button class="btn red" onclick="restoreDay('\\'\${key}\\'')">이날 삭제 일정 복원</button></div></div>\`);
+
+  let mapButtons='';
+  if(key==='pre'){
+    mapButtons='<a class="btn dark" target="_blank" href="https://map.naver.com/p/search/%EC%98%A4%EC%86%A1%EC%8A%A4%ED%85%8C%EC%9D%B4">네이버지도 오송스테이</a>'
+      + '<a class="btn" target="_blank" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD">네이버지도 청주공항</a>';
+  }else if(key==='d1'){
+    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Smile+Hotel+Kokura&destination=Riverwalk+Kitakyushu&waypoints=Uomachi+Gintengai%7CTanga+Market%7CKokura+Castle&travelmode=walking">DAY 1 Google Maps</a>';
+  }else if(key==='d2'){
+    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Space+LABO+Kitakyushu&travelmode=transit">Space LABO 이동</a>'
+      + '<a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=mont-bell+Yahata+THE+OUTLETS+KITAKYUSHU">몽벨 야하타점</a>'
+      + '<a class="btn" href="#pass">패스 실전 사용법</a>';
+  }else if(key==='d3'){
+    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Mojiko+Station,+Kitakyushu&travelmode=transit">고쿠라→모지코</a>'
+      + '<a class="btn" href="#pass">패스 실전 사용법</a>';
+  }else{
+    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Kitakyushu+Airport&travelmode=transit">공항 이동</a>';
+  }
+
+  host.insertAdjacentHTML('beforeend',
+    '<div class="day"><div class="dayhead"><h3>'+day.title+'</h3><p>'+day.subtitle+'</p></div>'
+    + '<div class="timeline">'+body+'</div>'
+    + '<div class="dayactions">'+mapButtons+'<button class="btn red" data-restore="'+key+'">이날 삭제 일정 복원</button></div></div>'
+  );
+ });
+
+ document.querySelectorAll('[data-remove]').forEach(function(btn){
+   btn.addEventListener('click',function(){ removePlan(btn.dataset.remove); });
+ });
+ document.querySelectorAll('[data-restore]').forEach(function(btn){
+   btn.addEventListener('click',function(){ restoreDay(btn.dataset.restore); });
  });
 }
 function removePlan(id){
   removed.add(id);
-  localStorage.setItem('kk_removed_v7',JSON.stringify([...removed]));
-  document.querySelector(\`.item[data-id="\${id}"]\`)?.classList.add('hidden');
+  localStorage.setItem('kk_removed_v7',JSON.stringify(Array.from(removed)));
+  const el=document.querySelector('.item[data-id="'+id+'"]');
+  if(el) el.classList.add('hidden');
 }
 function restoreDay(day){
-  document.querySelectorAll(\`.item[data-day="\${day}"]\`).forEach(el=>removed.delete(el.dataset.id));
-  localStorage.setItem('kk_removed_v7',JSON.stringify([...removed]));
-  document.querySelectorAll(\`.item[data-day="\${day}"]\`).forEach(el=>el.classList.remove('hidden'));
+  document.querySelectorAll('.item[data-day="'+day+'"]').forEach(function(el){ removed.delete(el.dataset.id); });
+  localStorage.setItem('kk_removed_v7',JSON.stringify(Array.from(removed)));
+  document.querySelectorAll('.item[data-day="'+day+'"]').forEach(function(el){ el.classList.remove('hidden'); });
 }
 
 function drawPacking(){
