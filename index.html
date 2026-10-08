@@ -47,6 +47,7 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 .stepnum{width:27px;height:27px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#0f172a;color:#fff;font-size:12px;font-weight:900}
 .passstep b{font-size:14.5px}.passstep p{margin:3px 0 0;color:var(--muted);font-size:13px}
 
+.step-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.step-link{display:inline-flex;padding:7px 10px;border-radius:9px;border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:800}.step-link.now{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
 </style>
 </head>
 <body>
@@ -85,7 +86,7 @@ main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{
 <section id="weather"><div class="head"><h2>날씨 × 일정 교차검토</h2><small>10/5 기준, 예보사 간 편차 존재</small></div><div class="grid" id="weatherGrid"></div>
 <div class="notice" style="margin-top:13px"><b>현재 판단:</b> 10/8은 고쿠라 도보 관광에 좋고, 10/9 사라쿠라산도 일정 유지가 맞다. 가장 불확실한 날은 10/10으로 일부 예보는 맑음, 일부는 흐림·약한 비 가능성을 잡고 있다. 하지만 가라토시장은 토요일 일정 가치가 커서 날짜는 유지하고 접이식 우산과 페리 운항 확인으로 대응하는 편이 낫다.</div></section>
 
-<section id="plan"><div class="head"><h2>최종 일정</h2><small>날씨·피로도에 따라 자유롭게 삭제·변경</small></div><div id="days"></div></section>
+<section id="plan"><div class="head"><h2>최종 일정 · 구간별 길찾기</h2><small>날씨·피로도에 따라 자유롭게 삭제·변경</small></div><div id="days"></div></section>
 
 <section id="pass">
 <div class="head"><h2>Touch Kyushu 실전 사용법</h2><small>10/9~10/10 · 어디서 무엇을 터치할지</small></div>
@@ -183,6 +184,9 @@ function drawWeather(){
 }
 
 function tagClass(k){return ['pass','warn','cash','route','hotel','free','shop'].includes(k)?k:'free'}
+const ROUTES={"d1":[["공항 → 고쿠라역","Kitakyushu Airport","Kokura Station","transit"],["Smile Hotel Kokura 짐 보관","Kokura Station","Smile Hotel Kokura","walking"],["교마치·우오마치 상점가","Smile Hotel Kokura","Uomachi Gintengai Kitakyushu","walking"],["탄가시장 + 점심","Uomachi Gintengai Kitakyushu","Tanga Market Kitakyushu","walking"],["고쿠라성","Tanga Market Kitakyushu","Kokura Castle","walking"],["리버워크·카페","Kokura Castle","Riverwalk Kitakyushu","walking"],["호텔 체크인·휴식","Riverwalk Kitakyushu","Smile Hotel Kokura","walking"]],"d2":[["고쿠라 → 스페이스월드","Kokura Station","Space World Station Kitakyushu","transit"],["Space LABO","Space World Station Kitakyushu","Space LABO Kitakyushu","walking"],["점심","Space LABO Kitakyushu","THE OUTLETS KITAKYUSHU","walking"],["THE OUTLETS KITAKYUSHU · 몽벨 우선","Space LABO Kitakyushu","mont bell Yahata THE OUTLETS KITAKYUSHU","walking"],["스페이스월드 → 야하타","Space World Station Kitakyushu","Yahata Station Kitakyushu","transit"],["야하타역 → 산록역","Yahata Station Kitakyushu","Sarakurayama Cable Car Sanroku Station","driving"],["케이블카·슬로프카 → 정상",null,"Sarakurayama Cable Car Sanroku Station","walking"],["고쿠라 복귀·저녁","Yahata Station Kitakyushu","Kokura Station","transit"]],"d3":[["호텔 → 고쿠라 → 모지코","Kokura Station","Mojiko Station","transit"],["모지코 → 가라토 페리","Mojiko Station","Mojiko Ferry Terminal","walking"],["가라토시장","Karato Pier Shimonoseki","Karato Market","walking"],["아카마신궁","Karato Market","Akama Shrine","walking"],["가라토 → 모지코 페리","Akama Shrine","Karato Pier Shimonoseki","walking"],["모지코 레트로 산책·카페","Mojiko Ferry Terminal","Mojiko Retro","walking"],["BEAR FRUITS (베어프루츠)","Mojiko Retro","BEAR FRUITS 1-4-7 Nishikaigan Kitakyushu","walking"],["모지코 레트로 전망실","BEAR FRUITS Mojiko","Mojiko Retro Observation Room","walking"],["모지코 → 고쿠라","Mojiko Station","Kokura Station","transit"]],"d4":[["체크아웃 → 고쿠라역","Smile Hotel Kokura","Kokura Station","walking"],["고쿠라 → 기타큐슈공항","Kokura Station","Kitakyushu Airport","transit"]]};
+function mapDir(from,to,mode){return 'https://www.google.com/maps/dir/?api=1'+(from?'&origin='+encodeURIComponent(from):'')+'&destination='+encodeURIComponent(to)+'&travelmode='+mode;}
+function linksFor(day,name){const r=(ROUTES[day]||[]).find(x=>x[0]===name);if(!r)return '';const leg=r[1]?'<a class="step-link" target="_blank" rel="noopener" href="'+mapDir(r[1],r[2],r[3])+'">구간 길찾기 ↗</a>':'';const cur='<a class="step-link now" target="_blank" rel="noopener" href="'+mapDir(null,r[2],r[3])+'">내 위치에서 ↗</a>';return '<div class="step-links">'+leg+cur+'</div>';}
 function drawDays(){
  const host=document.getElementById('days');
  Object.entries(DATA.trip).forEach(function(entry){
@@ -192,7 +196,7 @@ function drawDays(){
     const id=key+'-'+i, hidden=removed.has(id)?' hidden':'';
     body += '<div class="item'+hidden+'" data-id="'+id+'" data-day="'+key+'">'
       + '<div class="time">'+x.time+'</div><div class="dotcol"><div class="dot"></div></div>'
-      + '<div class="event"><b>'+x.name+'</b><p>'+x.desc+'</p><span class="tag '+tagClass(x.kind)+'">'+x.tag+'</span></div>'
+      + '<div class="event"><b>'+x.name+'</b><p>'+x.desc+'</p><span class="tag '+tagClass(x.kind)+'">'+x.tag+'</span>'+linksFor(key,x.name)+'</div>'
       + '<button class="del" data-remove="'+id+'">삭제</button></div>';
   });
 
