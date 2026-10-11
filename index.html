@@ -1,266 +1,60 @@
 <!doctype html>
-<html lang="ko">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0f172a">
-<meta name="description" content="오송스테이 전날 숙박부터 기타큐슈 3박4일, 준비물, 날씨, 패스, 면세까지 한 번에 보는 여행 페이지">
-<title>기타큐슈 3박 4일 · 최종 플래너</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f172a"><meta name="description" content="2026 기타큐슈 여행 경비 정산서 - 공동 경비, 개인 쇼핑, 친구 송금액">
+<title>기타큐슈 여행 경비 정산서</title>
 <style>
-:root{--bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#687386;--line:#e5e9f0;--blue:#2563eb;--green:#059669;--amber:#d97706;--red:#dc2626;--purple:#7c3aed}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",sans-serif;line-height:1.6}
-a{color:inherit;text-decoration:none} button{font:inherit}
-.hero{color:#fff;padding:52px 18px 40px;background:radial-gradient(circle at 88% 0%,rgba(14,165,233,.35),transparent 28%),linear-gradient(140deg,#0b1220,#18345e 58%,#087387)}
-.wrap{max-width:1040px;margin:auto} .hero small{opacity:.7;font-weight:800;letter-spacing:.12em}
-.hero h1{font-size:clamp(36px,8vw,64px);line-height:1;letter-spacing:-.055em;margin:8px 0 14px} .hero p{margin:0;color:#dbeafe}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px} .chip{font-size:12px;padding:7px 10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.12);border-radius:999px}
-nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)} nav div{max-width:1040px;margin:auto;display:flex;gap:5px;overflow:auto;padding:9px 12px} nav a{white-space:nowrap;padding:8px 10px;border-radius:999px;font-size:13px;color:#475569}
-main{padding:22px 14px 68px} section{max-width:1040px;margin:0 auto 28px} .head{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:13px} .head h2{margin:0;font-size:25px;letter-spacing:-.035em} .head small{color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:13px} .card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:0 8px 28px rgba(15,23,42,.04)}
-.status{grid-column:span 4} .status b{display:block;font-size:18px;margin-bottom:4px} .status span{font-size:13px;color:var(--muted)}
-.notice{background:#eff6ff;border:1px solid #bfdbfe;border-radius:18px;padding:15px;color:#334155} .notice b{color:#1e3a8a}
-.friend{grid-column:span 6} .friend h3,.pack h3,.guide h3{margin:0 0 10px;font-size:18px}
-.check{list-style:none;padding:0;margin:0} .check li{display:flex;gap:9px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.5px} .check li:last-child{border:0} .check input{width:17px;height:17px;margin-top:3px;accent-color:var(--blue)} .check small{display:block;color:var(--muted)}
-.links{display:grid;grid-template-columns:repeat(2,1fr);gap:8px} .link{display:block;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff} .link b{display:block;font-size:13.5px} .link span{font-size:11.5px;color:var(--muted)}
-.weather{grid-column:span 3} .weather b{display:block;font-size:17px} .weather .date{font-weight:900;color:var(--blue)} .weather p{margin:6px 0 0;color:var(--muted);font-size:12.5px}
-.day{background:#fff;border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 9px 32px rgba(15,23,42,.05);margin-bottom:16px}
-.dayhead{padding:19px;color:#fff;background:linear-gradient(135deg,#334155,#0f172a)} .day:nth-child(2) .dayhead{background:linear-gradient(135deg,#f59e0b,#ea580c)} .day:nth-child(3) .dayhead{background:linear-gradient(135deg,#0891b2,#2563eb)} .day:nth-child(4) .dayhead{background:linear-gradient(135deg,#7c3aed,#c026d3)} .day:nth-child(5) .dayhead{background:linear-gradient(135deg,#475569,#111827)}
-.dayhead h3{margin:2px 0 4px;font-size:24px} .dayhead p{margin:0;opacity:.92;font-size:13px} .budget{display:inline-block;margin-top:10px;padding:6px 10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.12);border-radius:999px;font-size:12px}
-.timeline{padding:8px 17px 15px} .item{display:grid;grid-template-columns:105px 22px 1fr auto;gap:9px;padding:12px 0;position:relative} .item.hidden{display:none} .time{font-weight:800;font-size:13px;color:#334155} .dotcol{position:relative} .dot{position:absolute;top:4px;left:4px;width:12px;height:12px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px #dbeafe} .item:not(:last-child) .dotcol:after{content:"";position:absolute;top:21px;bottom:-18px;left:9px;width:2px;background:#e5e7eb}
-.event b{font-size:15px} .event p{margin:3px 0 0;color:var(--muted);font-size:13px} .tag{display:inline-block;margin-top:6px;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:850}
-.tag.pass{background:#dcfce7;color:#166534} .tag.warn{background:#fee2e2;color:#991b1b} .tag.cash,.tag.shop{background:#fff7ed;color:#9a3412} .tag.route{background:#eff6ff;color:#1d4ed8} .tag.hotel{background:#ede9fe;color:#5b21b6} .tag.free{background:#f1f5f9;color:#475569}
-.del{border:1px solid #fecaca;background:#fff;color:#b91c1c;border-radius:9px;padding:5px 7px;font-size:11px;font-weight:800;cursor:pointer;align-self:start}
-.dayactions{display:flex;flex-wrap:wrap;gap:8px;padding:0 17px 17px} .btn{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:11px;padding:9px 11px;background:#fff;font-size:12.5px;font-weight:800} .btn.dark{background:#111827;color:#fff;border-color:#111827} .btn.red{color:#b91c1c;border-color:#fecaca;background:#fff7f7}
-.passgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px} .passbox{padding:14px;border:1px solid #bbf7d0;background:#f0fdf4;border-radius:15px} .passbox b{display:block;color:#166534} .passbox span{font-size:12.5px;color:#3f5d49}
-.guide{grid-column:span 6} .guide ul{margin:0;padding-left:19px} .guide li{margin:7px 0;font-size:13.5px}
-.pack{grid-column:span 4} .money{display:grid;grid-template-columns:repeat(3,1fr);gap:8px} .money div{padding:12px;background:#f8fafc;border:1px solid var(--line);border-radius:13px;text-align:center} .money b{display:block}
-.source{font-size:11.5px;color:#7c8798;margin-top:12px} .footer{text-align:center;color:#7c8798;font-size:12px;padding:15px 0 38px}
-@media(max-width:800px){.status,.weather{grid-column:span 6} .friend,.guide{grid-column:span 12} .pack{grid-column:span 6} .item{grid-template-columns:82px 20px 1fr;gap:7px} .del{grid-column:3;justify-self:start}}
-@media(max-width:470px){.status,.weather,.pack{grid-column:span 12} .links,.passgrid{grid-template-columns:1fr} .head{align-items:start;flex-direction:column} .money{grid-template-columns:1fr}}
-
-.passday{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:19px;overflow:hidden}
-.passday-title{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;background:#f8fafc;border-bottom:1px solid var(--line)}
-.passday-title b{font-size:15px}.passday-title span{font-size:11px;font-weight:900;color:#166534;background:#dcfce7;border-radius:999px;padding:4px 8px;white-space:nowrap}
-.passsteps{padding:5px 16px 11px}
-.passstep{display:grid;grid-template-columns:31px 1fr;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line)}
-.passstep:last-child{border-bottom:0}
-.stepnum{width:27px;height:27px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:#0f172a;color:#fff;font-size:12px;font-weight:900}
-.passstep b{font-size:14.5px}.passstep p{margin:3px 0 0;color:var(--muted);font-size:13px}
-
-.step-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.step-link{display:inline-flex;padding:7px 10px;border-radius:9px;border:1px solid #bfdbfe;background:#eff6ff;color:#1d4ed8;font-size:12px;font-weight:800}.step-link.now{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
-</style>
-</head>
-<body>
-<header class="hero"><div class="wrap">
-<small>KITAKYUSHU · 2026.10.07–10.11</small>
-<h1>기타큐슈<br>최종 플래너</h1>
-<p>오송스테이 전날 숙박 · 친구 2인 · 준비물 · 날씨 · Pass Case · 몽벨 면세까지</p>
-<div class="chips"><span class="chip">10/7 오송스테이 숙박</span><span class="chip">10/8 08:20 청주 출발</span><span class="chip">Pass 구매 완료</span><span class="chip">eSIM 구매 완료</span><span class="chip">일정은 전부 유동적</span></div>
-</div></header>
-<nav><div><a href="#ready">출발 전</a><a href="#weather">날씨</a><a href="#plan">일정</a><a href="#pass">패스</a><a href="#taxfree">면세</a><a href="#packing">짐</a><a href="#tips">팁</a></div></nav>
-<main>
-
-<section id="ready">
-<div class="head"><h2>출발 전 상태</h2><small>이제 핵심은 짐 챙기기</small></div>
-<div class="grid">
-<div class="card status"><b>내 준비</b><span>Touch Kyushu · eSIM · 환전 ¥100,000 완료. 이제 짐과 출발 직전 확인만 남음.</span></div>
-<div class="card status"><b>전날 숙박</b><span>10/7 오송스테이 숙박 · 다음 날 아침 청주공항 이동에 집중</span></div>
-<div class="card status"><b>공항 목표</b><span>10/8 06:10~06:20 청주공항 도착. 오송스테이에서 05:45~05:50 택시 출발 권장.</span></div>
-
-<div class="card friend"><h3>친구에게 확인할 것</h3><ul class="check">
-<li><input type="checkbox" data-k="f-vjw"><span><b>Visit Japan Web 완료</b><small>입국심사·세관 QR까지 생성</small></span></li>
-<li><input type="checkbox" data-k="f-pass"><span><b>Touch Kyushu 10/9 시작 2일권 구매</b><small>각자 Pass Case 계정·각자 티켓 필요</small></span></li>
-<li><input type="checkbox" data-k="f-esim"><span><b>eSIM 또는 로밍 준비</b><small>현지 도착 즉시 데이터 사용 가능하게</small></span></li>
-<li><input type="checkbox" data-k="f-card"><span><b>해외결제 카드 + 현금 준비</b><small>Apple Pay만 믿지 말고 실물카드 1장 권장</small></span></li>
-<li><input type="checkbox" data-k="f-passport"><span><b>여권 지참</b><small>몽벨 면세 구매에도 필요</small></span></li>
-</ul></div>
-
-<div class="card friend"><h3>국내 이동 · 네이버지도</h3><div class="links">
-<a class="link" target="_blank" href="https://map.naver.com/p/search/%EC%98%A4%EC%86%A1%EC%8A%A4%ED%85%8C%EC%9D%B4"><b>오송스테이 도착지 열기</b><span>친구가 자기 출발지를 선택</span></a>
-<a class="link" target="_blank" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD"><b>청주국제공항 도착지 열기</b><span>출발지는 현 위치에서 선택</span></a>
-</div></div>
-</div>
-<div class="notice" style="margin-top:13px"><b>여행 원칙:</b> 이 페이지의 시간표는 강제 일정이 아니라 기준선이다. 날씨, 피로도, 교통, 식당 대기시간이 더 중요하며 현장에서 더 좋은 선택이 있으면 순서 변경·단축·삭제한다. 각 일정의 삭제 버튼은 그 휴대폰에서만 숨긴다.</div>
-</section>
-
-<section id="weather"><div class="head"><h2>날씨 × 일정 교차검토</h2><small>10/5 기준, 예보사 간 편차 존재</small></div><div class="grid" id="weatherGrid"></div>
-<div class="notice" style="margin-top:13px"><b>현재 판단:</b> 10/8은 고쿠라 도보 관광에 좋고, 10/9 사라쿠라산도 일정 유지가 맞다. 가장 불확실한 날은 10/10으로 일부 예보는 맑음, 일부는 흐림·약한 비 가능성을 잡고 있다. 하지만 가라토시장은 토요일 일정 가치가 커서 날짜는 유지하고 접이식 우산과 페리 운항 확인으로 대응하는 편이 낫다.</div></section>
-
-<section id="plan"><div class="head"><h2>최종 일정 · 구간별 길찾기</h2><small>날씨·피로도에 따라 자유롭게 삭제·변경</small></div><div id="days"></div></section>
-
-<section id="pass">
-<div class="head"><h2>Touch Kyushu 실전 사용법</h2><small>10/9~10/10 · 어디서 무엇을 터치할지</small></div>
-<div class="notice"><b>제일 중요한 원칙</b><br>
-구매할 때 사용한 결제수단을 여행 중에도 그대로 사용한다. Apple Pay로 샀다면 같은 iPhone의 같은 카드를 사용하고, 실물카드로 샀다면 그 실물카드를 사용한다.
-JR에서는 <b>탈 때와 내릴 때 모두</b> 터치결제 전용 리더에 터치한다. 시설에서는 입구의 전용 단말기에 터치한다.
-교통계 IC카드나 다른 카드를 잘못 대면 일반 운임으로 처리될 수 있으니 Pass Case용 결제수단을 확실히 구분한다.</div>
-
-<div class="passgrid" style="margin-top:13px">
-<div class="passbox"><b>사용기간</b><span>2일권은 지정한 10/9과 다음 날 10/10에 유효. 마지막 날 25:00까지 이용 가능.</span></div>
-<div class="passbox"><b>JR 범위</b><span>가고시마 본선 모지코(門司港)~구로사키(黒崎). 보통·쾌속열차의 보통차 자유석만 이용.</span></div>
-</div>
-
-<div class="grid" style="margin-top:13px">
-<div class="card guide"><h3>JR 개찰구에서</h3><ul>
-<li>역에 들어갈 때 <b>タッチ決済 / Contactless</b> 표시가 있는 자동개찰기·폴형 리더·전용기기를 찾는다.</li>
-<li>Apple Pay로 구매했다면 구매한 카드를 iPhone에서 선택해 리더에 터치한다.</li>
-<li>목적지 역에서 나갈 때도 <b>같은 iPhone·같은 카드</b>로 다시 터치한다.</li>
-<li>JR에서는 Pass Case 화면 제시보다 구매에 사용한 결제수단의 터치가 핵심이다.</li>
-<li>특급 지정석이나 범위 밖 구간은 패스 대상이 아니다. 이번 일정에서는 보통·쾌속만 고르면 된다.</li>
-</ul></div>
-<div class="card guide"><h3>시설에서</h3><ul>
-<li>Space LABO, 사라쿠라산 케이블카·슬로프카, 모지코 레트로 전망실 등에서는 <b>입구의 Touch Kyushu 전용 단말기</b>에 같은 결제수단을 터치한다.</li>
-<li>Space LABO는 <b>상설전만</b> 패스 대상. 플라네타륨·특별전은 포함되지 않는다.</li>
-<li>기간 안에는 대상 JR 승차와 대상 시설 입장 횟수 제한이 없다.</li>
-<li>THE OUTLETS 같은 제휴 특전은 단말기 터치가 아니라 <b>Pass Case 화면 제시</b> 방식이므로 구분한다.</li>
-</ul></div>
-</div>
-
-<div class="passday"><div class="passday-title"><b>10/9 금요일 · 고쿠라 → Space LABO → 몽벨 → 사라쿠라산</b><span>PASS DAY 1</span></div><div class="passsteps">
-<div class="passstep"><span class="stepnum">1</span><div><b>고쿠라역 → 스페이스월드역</b><p>고쿠라역에서 <strong>JR 가고시마 본선(鹿児島本線)</strong> 서쪽 방향 열차를 탄다. 전광판에서 스페이스월드 정차 여부를 확인하고 보통 또는 쾌속을 선택. 들어갈 때와 스페이스월드역에서 나갈 때 모두 같은 iPhone/카드를 Touch 결제 리더에 터치.</p></div></div>
-<div class="passstep"><span class="stepnum">2</span><div><b>Space LABO 상설전</b><p>스페이스월드역에서 도보 이동. 입구 패스 전용 단말기에 구매 때 사용한 iPhone/카드를 터치. 상설전은 패스 대상이고 플라네타륨·특별전은 제외.</p></div></div>
-<div class="passstep"><span class="stepnum">3</span><div><b>THE OUTLETS KITAKYUSHU · 몽벨</b><p>Space LABO에서 아울렛으로 이동. 몽벨 쇼핑 전이나 후에 <strong>안내센터</strong>에서 Pass Case 화면을 보여주면 Touch Kyushu 제휴 쇼핑 특전을 받을 수 있다. 몽벨에서의 사용 가능 여부는 현장 확인.</p></div></div>
-<div class="passstep"><span class="stepnum">4</span><div><b>스페이스월드역 → 야하타역</b><p>가고시마 본선 서쪽 방향을 탄다. <strong>야하타(八幡)는 스페이스월드 다음 역</strong>. 승차·하차 때 각각 같은 결제수단으로 터치.</p></div></div>
-<div class="passstep"><span class="stepnum">5</span><div><b>야하타역 → 사라쿠라산 산록역</b><p>10/9은 평일이라 무료셔틀의 야하타역 첫 출발이 <strong>17:05</strong>. 일몰 여유를 위해 올라갈 때는 계획대로 택시가 안정적. 셔틀을 쓴다면 야하타역을 나와 <strong>로터리 왼쪽, 니시테츠 버스정류장 옆의 사라쿠라산 케이블카 표지</strong>를 찾는다.</p></div></div>
-<div class="passstep"><span class="stepnum">6</span><div><b>산록역 → 케이블카 → 슬로프카 → 정상</b><p>산록역 전용 단말기에 같은 iPhone/카드를 터치. <strong>산록역 → 케이블카 → 산상역 → 슬로프카 → 전망대역</strong> 순서. 케이블카 약 6분, 슬로프카 약 3분이며 둘 다 패스 대상.</p></div></div>
-<div class="passstep"><span class="stepnum">7</span><div><b>야경 후 → 야하타역 → 고쿠라역</b><p>내려온 뒤 무료셔틀 시간이 맞으면 산록역의 <strong>후모토 식당 옆 정류장</strong>에서 야하타역으로 이동. 야하타역에서는 가고시마 본선의 <strong>고쿠라·모지코 방향</strong> 보통/쾌속으로 복귀하며 입·출장 모두 터치.</p></div></div>
-</div></div>
-
-<div class="passday"><div class="passday-title"><b>10/10 토요일 · 고쿠라 → 모지코 → 가라토 → 모지코 → 고쿠라</b><span>PASS DAY 2</span></div><div class="passsteps">
-<div class="passstep"><span class="stepnum">1</span><div><b>고쿠라역 → 모지코역</b><p>고쿠라역에서 가고시마 본선의 <strong>모지코(門司港) 방향</strong> 열차를 탄다. 모지코는 종점. 고쿠라에서 들어갈 때와 모지코에서 나갈 때 같은 iPhone/카드를 터치.</p></div></div>
-<div class="passstep"><span class="stepnum">2</span><div><b>모지코 → 가라토 연락선</b><p><strong>페리는 Touch Kyushu 대상이 아니다.</strong> 패스를 터치하지 않고 별도 승선. 가라토시장과 아카마신궁도 패스 대상 시설이 아니다.</p></div></div>
-<div class="passstep"><span class="stepnum">3</span><div><b>모지코 복귀 후 패스 집중 사용</b><p>모지코 레트로 전망실에서는 입구 전용 단말기에 터치. 시간이 남으면 <strong>간몬해협뮤지엄, 구 오사카상선, 구 모지미쓰이클럽</strong>도 패스 대상이라 동선에 맞춰 추가 가능.</p></div></div>
-<div class="passstep"><span class="stepnum">4</span><div><b>모지코역 → 고쿠라역</b><p>가고시마 본선에서 <strong>고쿠라·구로사키·오리오·하카타 방면</strong> 열차 중 고쿠라에 정차하는 보통/쾌속 이용. 모지코 승차와 고쿠라 하차 시 모두 같은 결제수단으로 터치.</p></div></div>
-</div></div>
-
-<div class="grid" style="margin-top:13px">
-<div class="card guide"><h3>이번 여행에서 PASS가 안 되는 것</h3><ul>
-<li>10/8 고쿠라성: 패스 자체는 대상이지만 <b>시작일이 10/9</b>라 이날은 사용 불가.</li>
-<li>기타큐슈공항↔고쿠라 공항버스</li><li>야하타역↔산록역 택시</li><li>모지코↔가라토 연락선</li><li>가라토시장·아카마신궁·식당·카페·일반 쇼핑</li>
-</ul></div>
-<div class="card guide"><h3>문제 생겼을 때</h3><ul>
-<li>개찰구가 반응하지 않으면 여러 카드를 연속으로 대지 말고 구매에 사용한 카드가 맞는지 먼저 확인.</li>
-<li>Pass Case에서 10/9 시작 2일권이 정상 표시되는지 출발 전날 확인.</li>
-<li>시설이나 열차를 한 번이라도 이용한 뒤에는 환불 제한이 생길 수 있음.</li>
-<li>10/9~10/10은 iPhone 배터리와 보조배터리를 특히 신경 쓴다.</li>
-</ul></div></div>
-<div class="dayactions" style="padding:13px 0 0">
-<a class="btn dark" target="_blank" href="https://kitakyushu-tourpass.com/ko/">Touch Kyushu 공식 안내</a>
-<a class="btn" target="_blank" href="https://www.sarakurayama-cablecar.co.jp/shuttlebus/">사라쿠라산 무료셔틀 시간표</a>
-<a class="btn" target="_blank" href="https://www.sarakurayama-cablecar.co.jp/timetable/">케이블카·슬로프카 시간표</a>
-</div></section>
-
-<section id="taxfree"><div class="head"><h2>면세 · 세관 안내</h2><small>몽벨 쇼핑 시 확인</small></div>
-<div class="grid">
-<div class="card guide"><h3>일본에서 몽벨 Tax-Free</h3><ul><li>이번 여행은 2026년 11월 제도 개편 전이라 현재 방식대로 매장에서 즉시 소비세 면제 처리.</li><li>일반물품은 같은 면세점에서 하루 세전 합계 ¥5,000 이상이 기준.</li><li>여권을 반드시 지참하고, 구매품은 일본 밖으로 반출해야 함.</li><li>일본에서 Tax-Free 받았다고 한국 입국 때 자동 면세되는 것은 아님.</li></ul></div>
-<div class="card guide"><h3>한국 귀국 시 현재 면세범위</h3><ul><li><b>일반물품:</b> 1인 합계 미화 US$800 이하.</li><li><b>주류:</b> 일반물품 한도와 별도로 합산 2L 이하 + 총 US$400 이하.</li><li><b>담배:</b> 궐련 200개비.</li><li><b>향수:</b> 100mL.</li><li>초과 시 신고. 자진신고하면 관세 30% 감면(20만원 한도).</li></ul></div>
-</div>
-<div class="notice" style="margin-top:13px"><b>첨부 화면과 차이:</b> 첨부 이미지에는 일반물품 20만원, 주류 3병(760mL 환산), 향수 2oz 등으로 표시돼 있지만 현재 관세청 공식 안내는 위 기준과 다르다. 그래서 웹페이지에는 최신 공식 기준을 반영했다. 몽벨을 크게 살 경우 친구 개인 구매액이 US$800 상당을 넘는지만 귀국 전에 계산하면 된다.</div>
-</section>
-
-<section id="packing"><div class="head"><h2>짐 체크리스트</h2><small>이제 여기만 끝내면 됨</small></div><div class="grid" id="packingGrid"></div></section>
-
-<section id="tips"><div class="head"><h2>놓치기 쉬운 팁</h2><small>출발 전날 다시 보기</small></div>
-<div class="grid">
-<div class="card guide"><h3>공항·수하물</h3><ul><li>08:20 국제선 + 위탁수하물이라 06:10~06:20 청주공항 도착 목표.</li><li>오송스테이에서는 05:45~05:50 택시 출발. 전날 밤 호출앱 예상시간도 한 번 확인.</li><li>위탁수하물 무게를 10/7 밤에 재고, 보조배터리는 반드시 기내가방.</li><li>오송스테이 체크인이 늦더라도 다음날 조식보다 공항 도착시간을 우선.</li></ul></div>
-<div class="card guide"><h3>결제</h3><ul><li>엔화 ¥100,000 환전 완료. 현금과 현대 Visa/Apple Pay를 상황에 따라 병행.</li><li>트래블월렛은 필수 아님. 해외결제 가능한 실물카드 1장은 백업으로 챙기기.</li><li>해외 카드 결제 시 원화(KRW) 대신 엔화(JPY) 결제를 선택.</li><li>시장·소형 매장에서는 소액권을 따로 꺼내 쓰면 편함.</li></ul></div>
-<div class="card guide"><h3>날씨·복장</h3><ul><li>낮은 20도 중후반이라 두꺼운 외투는 불필요.</li><li>반팔/얇은 긴팔 + 긴바지 + 얇은 바람막이면 충분.</li><li>사라쿠라산 정상과 모지코 해안은 체감온도가 더 낮고 바람이 강할 수 있음.</li><li>접이식 우산은 10/10 예보 편차 때문에 꼭 챙기기.</li></ul></div>
-<div class="card guide"><h3>현지 동선</h3><ul><li>10/9 아울렛에서 몽벨을 먼저 끝내고, 15:35에는 무조건 야하타 이동 준비.</li><li>10/10 가라토 도착 후 돌아오는 페리 시간을 먼저 확인하면 마음이 편함.</li><li>DAY 3이 가장 많이 걷는 날이라 전망실 이후 피곤하면 일찍 복귀.</li><li>모든 계획은 ‘달성해야 하는 체크리스트’가 아니라 선택지 모음으로 생각하기.</li></ul></div>
-</div>
-</section>
-
-<div class="footer">Kitakyushu Trip · 마지막 업데이트 2026-10-05<br>날씨·항공·교통·시설 운영은 출발 전날과 당일 공식 정보를 다시 확인</div>
-</main>
-
-<script>
-const DATA={"trip":{"pre":{"title":"10/7 · 오송 전날 숙박","subtitle":"오송스테이 · 다음 날 08:20 국제선 대비","items":[{"time":"저녁","name":"각자 오송스테이로 이동","desc":"친구 출발지는 미정. 네이버지도에서 목적지만 열고 각자 출발지를 선택.","tag":"국내 이동비 별도","kind":"route"},{"time":"16:00 이후","name":"오송스테이 체크인","desc":"충북 청주시 흥덕구 오송읍 봉산2길 76-9 · 오송역 도보 약 3분권.","tag":"숙박비 별도","kind":"hotel"},{"time":"취침 전","name":"출국 최종 점검","desc":"여권 · 항공권 · Visit Japan Web · Pass Case · eSIM · 카드 · 현금 · 위탁수하물 무게.","tag":"중요","kind":"warn"},{"time":"05:35~05:40","name":"기상","desc":"캐리어는 전날 밤 완성. 세면과 귀중품만 챙기고 바로 출발 준비.","tag":"일찍 취침","kind":"free"},{"time":"05:45~05:50","name":"오송스테이 → 청주공항","desc":"택시 권장. 오송역에서 청주공항까지 약 30분을 기준으로 잡고 아침 여유시간을 확보.","tag":"택시 이동","kind":"route"},{"time":"06:10~06:20","name":"청주공항 도착 목표","desc":"08:20 국제선 + 위탁수하물 기준. 약 2시간 전 도착을 목표로 여유 있게 체크인.","tag":"권장 도착","kind":"warn"}]},"d1":{"title":"10/8 · 고쿠라","subtitle":"입국 → 고쿠라 시내 · 고쿠라성","items":[{"time":"08:20","name":"청주 출발 RF374","desc":"당일 게이트·운항상태 재확인.","tag":"위탁수하물","kind":"warn"},{"time":"09:30경","name":"기타큐슈공항 도착","desc":"입국심사 → 수하물 → 세관.","tag":"Visit Japan Web","kind":"free"},{"time":"10:20~11:20","name":"공항 → 고쿠라역","desc":"공항버스 이용. 도착 후 버스 승차 위치를 확인하고 고쿠라역으로 이동.","tag":"공항버스","kind":"route"},{"time":"11:20~11:40","name":"Smile Hotel Kokura 짐 보관","desc":"고쿠라역에서 도보 이동.","tag":"도보","kind":"free"},{"time":"11:40~12:20","name":"교마치·우오마치 상점가","desc":"숙소 주변 아케이드 산책.","tag":"도보","kind":"free"},{"time":"12:20~13:20","name":"탄가시장 + 점심","desc":"시장 구경과 점심. 작은 매장은 현금이 편할 수 있음.","tag":"점심","kind":"cash"},{"time":"13:30~15:00","name":"고쿠라성","desc":"Touch Kyushu 시작일은 10/9라서 이날은 패스를 사용할 수 없음.","tag":"10/8 패스 미사용","kind":"warn"},{"time":"15:00~16:00","name":"리버워크·카페","desc":"첫날 피로 회복용 휴식.","tag":"카페","kind":"cash"},{"time":"16:00~17:00","name":"호텔 체크인·휴식","desc":"무리해서 일정 추가하지 않기.","tag":"휴식","kind":"free"},{"time":"18:00~","name":"고쿠라 저녁","desc":"야키우동·야키토리·이자카야·라멘 중 현장에서 결정.","tag":"저녁","kind":"cash"}]},"d2":{"title":"10/9 · Space LABO + 사라쿠라산","subtitle":"Touch Kyushu 1일차 · THE OUTLETS에서 몽벨 구매","items":[{"time":"09:20~10:00","name":"고쿠라 → 스페이스월드","desc":"JR 일반·쾌속. 패스 대상 구간.","tag":"PASS","kind":"pass"},{"time":"10:00~12:15","name":"Space LABO","desc":"상설전은 패스 포함. 플라네타륨·특별전은 별도.","tag":"PASS","kind":"pass"},{"time":"12:15~13:15","name":"점심","desc":"THE OUTLETS 인근에서 점심.","tag":"점심","kind":"cash"},{"time":"13:15~15:15","name":"THE OUTLETS KITAKYUSHU · 몽벨 우선","desc":"몽벨 야하타점은 1층. 아웃렛 상품 취급·면세 가능. 친구 몽벨 구매를 먼저 끝낸다.","tag":"몽벨 우선","kind":"shop"},{"time":"구매 시","name":"몽벨 면세 처리","desc":"여권 지참. Tax-Free 대상 여부를 매장에서 확인하고 여권으로 면세 처리.","tag":"여권 필수","kind":"warn"},{"time":"15:15~15:35","name":"패스 특전 확인","desc":"THE OUTLETS 안내센터에서 Pass Case 화면을 보여주고 쇼핑 특전을 확인. 몽벨에서 사용할 수 있는지는 현장에서 확인.","tag":"PASS 특전","kind":"pass"},{"time":"15:45~16:10","name":"스페이스월드 → 야하타","desc":"JR 한 정거장. 패스 이용.","tag":"PASS","kind":"pass"},{"time":"16:10~16:25","name":"야하타역 → 산록역","desc":"10/9은 금요일이라 무료 셔틀 첫차가 늦다. 일몰 여유를 위해 올라갈 때는 택시 권장.","tag":"택시 권장","kind":"route"},{"time":"16:30~17:00","name":"케이블카·슬로프카 → 정상","desc":"둘 다 패스 포함.","tag":"PASS","kind":"pass"},{"time":"17:00~18:40","name":"사라쿠라산 일몰·야경","desc":"구름·강풍이면 체류시간 축소. 날씨가 나쁘면 과감히 삭제 가능.","tag":"날씨 중요","kind":"warn"},{"time":"19:30~","name":"고쿠라 복귀·저녁","desc":"사라쿠라산에서 내려온 뒤 야하타역으로 이동하고 JR 패스로 고쿠라 복귀.","tag":"JR PASS","kind":"pass"}]},"d3":{"title":"10/10 · 모지코 + 가라토시장","subtitle":"Touch Kyushu 2일차 · 메인 관광일","items":[{"time":"07:55~08:35","name":"호텔 → 고쿠라 → 모지코","desc":"JR 일반·쾌속. 패스 이용.","tag":"PASS","kind":"pass"},{"time":"08:50~09:00","name":"모지코 → 가라토 페리","desc":"간몬 연락선 이용. 이 구간은 Touch Kyushu 대상이 아니며 기상·운항상황을 현장에서 확인.","tag":"PASS 제외","kind":"route"},{"time":"09:00~10:45","name":"가라토시장","desc":"스시·복어·참치·우니 등을 조금씩. 작은 매장은 현금 소액권이 편함.","tag":"시장","kind":"cash"},{"time":"10:50~11:30","name":"아카마신궁","desc":"시장과 도보 이동.","tag":"도보","kind":"free"},{"time":"11:40~12:10","name":"가라토 → 모지코 페리","desc":"돌아오는 배 시간을 먼저 확인. 페리는 Touch Kyushu 대상이 아님.","tag":"PASS 제외","kind":"route"},{"time":"12:10~14:30","name":"모지코 레트로 산책·카페","desc":"항구·근대건축·사진.","tag":"카페","kind":"cash"},{"time":"14:00~15:00 · 유동적","name":"BEAR FRUITS (베어프루츠)","desc":"모지코역 가까운 야키카레 전문점. 가라토시장에서 충분히 먹었다면 배고플 때만 방문하거나 생략. 식사 대기시간에 따라 오후 관광과 순서 교체 가능. 주소: 福岡県北九州市門司区西海岸1-4-7 門司港センタービル 1F.","tag":"야키카레 · 점심","kind":"cash"},{"time":"15:00~17:00 · 유동적","name":"모지코 레트로 전망실","desc":"패스 포함. 여유 있으면 간몬해협뮤지엄·구 오사카상선·구 모지미쓰이클럽도 패스 대상.","tag":"PASS","kind":"pass"},{"time":"17:00~18:00 · 유동적","name":"모지코 → 고쿠라","desc":"JR 패스 이용.","tag":"PASS","kind":"pass"},{"time":"18:30~ · 유동적","name":"마지막 저녁","desc":"야키니쿠 또는 이자카야.","tag":"저녁","kind":"cash"}]},"d4":{"title":"10/11 · 귀국","subtitle":"고쿠라 → 기타큐슈공항 → 청주","items":[{"time":"07:30~08:10","name":"기상·간단한 아침","desc":"편의점 또는 근처 식사.","tag":"아침","kind":"cash"},{"time":"08:10~08:30","name":"체크아웃 → 고쿠라역","desc":"도보 이동.","tag":"도보","kind":"free"},{"time":"09:00~09:40","name":"고쿠라 → 기타큐슈공항","desc":"공항버스 이용. Touch Kyushu는 10/10에 종료되므로 공항버스에는 사용하지 않음.","tag":"공항버스","kind":"route"},{"time":"09:40~11:30","name":"체크인·출국·간식","desc":"면세품을 샀다면 여권과 구매품을 바로 제시할 수 있게 정리.","tag":"간식","kind":"cash"},{"time":"11:55","name":"기타큐슈 출발 RF373","desc":"전날 운항상태 재확인.","tag":"귀국","kind":"free"}]}},"weather":[{"date":"10/8","title":"맑음 우세","temp":"약 24~27℃ / 15~17℃","rain":"강수 0~30% 범위","plan":"고쿠라 도보 일정에 매우 유리. 낮엔 반팔도 가능, 아침·저녁은 얇은 겉옷."},{"date":"10/9","title":"맑음~구름","temp":"약 26~29℃ / 16~22℃","rain":"강수 5~40% 범위","plan":"사라쿠라산 일정 유지. 다만 정상은 바람·구름 영향을 크게 받으므로 15시쯤 시야와 풍속 재확인."},{"date":"10/10","title":"맑음~흐림, 예보 편차 큼","temp":"약 27~29℃ / 21℃ 전후","rain":"강수 0~41% 범위","plan":"모지코·가라토는 진행 가능하되 접이식 우산 필수. 페리 운항은 바람이 강하면 현장에서 확인."},{"date":"10/11","title":"대체로 맑음~간헐적 소나기 가능","temp":"약 27~30℃ / 21℃ 전후","rain":"강수 0~20% 범위","plan":"귀국 이동에는 큰 문제 가능성 낮음. 우산은 기내가방 가까이에."}],"packing":[["기내/몸에 지닐 것",["여권","휴대폰 + 충전 케이블","보조배터리(위탁수하물 금지)","해외결제 실물카드 1장 이상","현금 ¥100,000 챙기기(환전 완료)","항공권·호텔 예약 캡처","Visit Japan Web QR","Pass Case 로그인 확인","이어폰","볼펜 1개"]],["캐리어",["속옷·양말 4~5세트","상의 3~4장","긴바지 2벌","얇은 바람막이/후드 1벌","편한 운동화","잠옷","세면도구·면도기","접이식 우산","Type A 플러그 변환 어댑터","지퍼백·빨래봉투","여분 마스크/휴지"]],["출발 직전",["위탁수하물 무게 확인","iPhone·보조배터리 100% 충전","eSIM 활성화 방법 다시 확인","친구 Visit Japan Web 완료 확인","친구 Touch Kyushu 10/9 시작 2일권 확인","10/9 사라쿠라산 날씨·풍속 확인 예정","해외결제 차단 여부 확인"]]]};
-const removed=new Set(JSON.parse(localStorage.getItem('kk_removed_v7')||'[]'));
-
-function drawWeather(){
-  const g=document.getElementById('weatherGrid');
-  DATA.weather.forEach(w=>{
-    g.insertAdjacentHTML('beforeend',`<div class="card weather"><span class="date">${w.date}</span><b>${w.title}</b><p>${w.temp}<br>${w.rain}</p><p><strong>계획:</strong> ${w.plan}</p></div>`);
-  });
-}
-
-function tagClass(k){return ['pass','warn','cash','route','hotel','free','shop'].includes(k)?k:'free'}
-const ROUTES={"d1":[["공항 → 고쿠라역","Kitakyushu Airport","Kokura Station","transit"],["Smile Hotel Kokura 짐 보관","Kokura Station","Smile Hotel Kokura","walking"],["교마치·우오마치 상점가","Smile Hotel Kokura","Uomachi Gintengai Kitakyushu","walking"],["탄가시장 + 점심","Uomachi Gintengai Kitakyushu","Tanga Market Kitakyushu","walking"],["고쿠라성","Tanga Market Kitakyushu","Kokura Castle","walking"],["리버워크·카페","Kokura Castle","Riverwalk Kitakyushu","walking"],["호텔 체크인·휴식","Riverwalk Kitakyushu","Smile Hotel Kokura","walking"]],"d2":[["고쿠라 → 스페이스월드","Kokura Station","Space World Station Kitakyushu","transit"],["Space LABO","Space World Station Kitakyushu","Space LABO Kitakyushu","walking"],["점심","Space LABO Kitakyushu","THE OUTLETS KITAKYUSHU","walking"],["THE OUTLETS KITAKYUSHU · 몽벨 우선","Space LABO Kitakyushu","mont bell Yahata THE OUTLETS KITAKYUSHU","walking"],["스페이스월드 → 야하타","Space World Station Kitakyushu","Yahata Station Kitakyushu","transit"],["야하타역 → 산록역","Yahata Station Kitakyushu","Sarakurayama Cable Car Sanroku Station","driving"],["케이블카·슬로프카 → 정상",null,"Sarakurayama Cable Car Sanroku Station","walking"],["고쿠라 복귀·저녁","Yahata Station Kitakyushu","Kokura Station","transit"]],"d3":[["호텔 → 고쿠라 → 모지코","Kokura Station","Mojiko Station","transit"],["모지코 → 가라토 페리","Mojiko Station","Mojiko Ferry Terminal","walking"],["가라토시장","Karato Pier Shimonoseki","Karato Market","walking"],["아카마신궁","Karato Market","Akama Shrine","walking"],["가라토 → 모지코 페리","Akama Shrine","Karato Pier Shimonoseki","walking"],["모지코 레트로 산책·카페","Mojiko Ferry Terminal","Mojiko Retro","walking"],["BEAR FRUITS (베어프루츠)","Mojiko Retro","BEAR FRUITS 1-4-7 Nishikaigan Kitakyushu","walking"],["모지코 레트로 전망실","BEAR FRUITS Mojiko","Mojiko Retro Observation Room","walking"],["모지코 → 고쿠라","Mojiko Station","Kokura Station","transit"]],"d4":[["체크아웃 → 고쿠라역","Smile Hotel Kokura","Kokura Station","walking"],["고쿠라 → 기타큐슈공항","Kokura Station","Kitakyushu Airport","transit"]]};
-function mapDir(from,to,mode){return 'https://www.google.com/maps/dir/?api=1'+(from?'&origin='+encodeURIComponent(from):'')+'&destination='+encodeURIComponent(to)+'&travelmode='+mode;}
-function linksFor(day,name){const r=(ROUTES[day]||[]).find(x=>x[0]===name);if(!r)return '';const leg=r[1]?'<a class="step-link" target="_blank" rel="noopener" href="'+mapDir(r[1],r[2],r[3])+'">구간 길찾기 ↗</a>':'';const cur='<a class="step-link now" target="_blank" rel="noopener" href="'+mapDir(null,r[2],r[3])+'">내 위치에서 ↗</a>';return '<div class="step-links">'+leg+cur+'</div>';}
-function drawDays(){
- const host=document.getElementById('days');
- Object.entries(DATA.trip).forEach(function(entry){
-  const key=entry[0], day=entry[1];
-  let body='';
-  day.items.forEach(function(x,i){
-    const id=key+'-'+i, hidden=removed.has(id)?' hidden':'';
-    body += '<div class="item'+hidden+'" data-id="'+id+'" data-day="'+key+'">'
-      + '<div class="time">'+x.time+'</div><div class="dotcol"><div class="dot"></div></div>'
-      + '<div class="event"><b>'+x.name+'</b><p>'+x.desc+'</p><span class="tag '+tagClass(x.kind)+'">'+x.tag+'</span>'+linksFor(key,x.name)+'</div>'
-      + '<button class="del" data-remove="'+id+'">삭제</button></div>';
-  });
-
-  let mapButtons='';
-  if(key==='pre'){
-    mapButtons='<a class="btn dark" target="_blank" href="https://map.naver.com/p/search/%EC%98%A4%EC%86%A1%EC%8A%A4%ED%85%8C%EC%9D%B4">네이버지도 오송스테이</a>'
-      + '<a class="btn" target="_blank" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD">네이버지도 청주공항</a>';
-  }else if(key==='d1'){
-    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Smile+Hotel+Kokura&destination=Riverwalk+Kitakyushu&waypoints=Uomachi+Gintengai%7CTanga+Market%7CKokura+Castle&travelmode=walking">DAY 1 Google Maps</a>';
-  }else if(key==='d2'){
-    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Space+LABO+Kitakyushu&travelmode=transit">Space LABO 이동</a>'
-      + '<a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=mont-bell+Yahata+THE+OUTLETS+KITAKYUSHU">몽벨 야하타점</a>'
-      + '<a class="btn" href="#pass">패스 실전 사용법</a>';
-  }else if(key==='d3'){
-    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Mojiko+Station,+Kitakyushu&travelmode=transit">고쿠라→모지코</a>'
-      + '<a class="btn" href="#pass">패스 실전 사용법</a>';
-  }else{
-    mapButtons='<a class="btn dark" target="_blank" href="https://www.google.com/maps/dir/?api=1&origin=Kokura+Station,+Kitakyushu&destination=Kitakyushu+Airport&travelmode=transit">공항 이동</a>';
-  }
-
-  host.insertAdjacentHTML('beforeend',
-    '<div class="day"><div class="dayhead"><h3>'+day.title+'</h3><p>'+day.subtitle+'</p></div>'
-    + '<div class="timeline">'+body+'</div>'
-    + '<div class="dayactions">'+mapButtons+'<button class="btn red" data-restore="'+key+'">이날 삭제 일정 복원</button></div></div>'
-  );
- });
-
- document.querySelectorAll('[data-remove]').forEach(function(btn){
-   btn.addEventListener('click',function(){ removePlan(btn.dataset.remove); });
- });
- document.querySelectorAll('[data-restore]').forEach(function(btn){
-   btn.addEventListener('click',function(){ restoreDay(btn.dataset.restore); });
- });
-}
-function removePlan(id){
-  removed.add(id);
-  localStorage.setItem('kk_removed_v7',JSON.stringify(Array.from(removed)));
-  const el=document.querySelector('.item[data-id="'+id+'"]');
-  if(el) el.classList.add('hidden');
-}
-function restoreDay(day){
-  document.querySelectorAll('.item[data-day="'+day+'"]').forEach(function(el){ removed.delete(el.dataset.id); });
-  localStorage.setItem('kk_removed_v7',JSON.stringify(Array.from(removed)));
-  document.querySelectorAll('.item[data-day="'+day+'"]').forEach(function(el){ el.classList.remove('hidden'); });
-}
-
-function drawPacking(){
- const g=document.getElementById('packingGrid');
- DATA.packing.forEach((sec,si)=>{
-  let lis='';
-  sec[1].forEach((x,i)=>{const k=`pack-${si}-${i}`;lis+=`<li><input type="checkbox" data-k="${k}"><span>${x}</span></li>`});
-  g.insertAdjacentHTML('beforeend',`<div class="card pack"><h3>${sec[0]}</h3><ul class="check">${lis}</ul></div>`);
- });
-}
-function bindChecks(){
- document.querySelectorAll('input[data-k]').forEach(cb=>{const k='kk_check_v6_'+cb.dataset.k;cb.checked=localStorage.getItem(k)==='1';cb.addEventListener('change',()=>localStorage.setItem(k,cb.checked?'1':'0'))});
-}
-drawWeather(); drawDays(); drawPacking(); bindChecks();
-/* 이전 버전의 서비스워커가 오래된 페이지를 캐시하는 것을 방지 */
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister()));
-}
-if ('caches' in window) {
-  caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
-}
-</script>
+:root{--ink:#17253c;--sub:#65758b;--blue:#2356bd;--line:#e4eaf2;--paper:#fff;--bg:#f4f7fb}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;line-height:1.6}header{background:linear-gradient(135deg,#101f3a,#1f477b);color:#fff;padding:42px 18px 54px}.wrap{max-width:800px;margin:auto}header small{color:#afc7ea;font-weight:700;letter-spacing:.1em}h1{font-size:clamp(30px,6vw,46px);letter-spacing:-.045em;margin:6px 0}header p{color:#cfdef2;margin:0}.content{padding:0 15px 60px;margin-top:-29px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 25px rgba(26,42,64,.045);margin-bottom:14px;overflow:hidden}.pad{padding:22px}.label{font-size:13px;color:var(--sub);font-weight:700}.big{font-size:clamp(32px,8vw,48px);font-weight:850;letter-spacing:-.06em;line-height:1.3;margin:5px 0 12px;color:#174aa9}.split{display:grid;grid-template-columns:1fr 1fr;gap:10px}.metric{border-radius:12px;padding:14px;background:#f2f6fd}.metric b{display:block;font-size:20px;letter-spacing:-.03em}.metric span{color:var(--sub);font-size:12px}.action{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.btn{border:0;border-radius:12px;background:#174aa9;color:#fff;padding:12px 17px;font:inherit;font-weight:700;cursor:pointer}.btn.secondary{background:#e8eef8;color:#23436f}h2{font-size:21px;letter-spacing:-.03em;margin:30px 2px 13px}h3{font-size:16px;margin:0;padding:16px 18px;border-bottom:1px solid var(--line)}table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:11px 16px;border-bottom:1px solid #edf1f6;text-align:left}td:last-child,th:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:650}tr:last-child td{border-bottom:0}.total{background:#f1f5fc;font-weight:800}.mini{font-size:11px;color:#66788e}.sectionhead{display:flex;align-items:center;justify-content:space-between}.day summary{padding:17px;display:flex;gap:10px;align-items:center;cursor:pointer;list-style:none}.day summary::-webkit-details-marker{display:none}.day summary span:first-child{flex:1;font-weight:750}.day summary strong{font-variant-numeric:tabular-nums}.arrow{color:var(--sub)}.day[open] .arrow{transform:rotate(180deg)}.tablewrap{border-top:1px solid var(--line)}.muted{font-size:13px;color:var(--sub)}.note{padding:0 18px 18px}.final{background:#132b52;color:#fff}.final .label{color:#b8cdec}.final .big{color:#fff}.final td{border-color:#365071}.final .muted{color:#c8d7eb}footer{text-align:center;color:#78889b;font-size:12px;padding-top:18px}@media(max-width:520px){.pad{padding:18px}.split{grid-template-columns:1fr 1fr}.metric{padding:12px}.metric b{font-size:16px}td,th{padding:10px 12px;font-size:12px}.day summary{padding:14px;font-size:13px}}@media print{header{background:#fff;color:#000;padding:14px}.content{margin:0}.card{break-inside:avoid;box-shadow:none}.action{display:none}body{background:white}}
+</style></head><body>
+<header><div class="wrap"><small>2026 KITAKYUSHU · SETTLEMENT</small><h1>기타큐슈 여행 경비 정산서</h1><p>2026.10.07 – 10.11 &nbsp;|&nbsp; 2인 여행 · 공동 경비 50:50</p></div></header>
+<main class="wrap content">
+<section class="card pad"><div class="label">친구가 송금할 최종 금액</div><div class="big">1,362,712원</div>
+<div class="split"><div class="metric"><span>공동 경비 절반</span><b>1,085,999원</b></div><div class="metric"><span>친구 개인 쇼핑</span><b>276,713원</b></div></div>
+<div class="action"><button class="btn" id="copy" type="button">정산 금액 복사</button><button class="btn secondary" onclick="window.print()" type="button">인쇄 / PDF 저장</button></div></section>
+<h2>전체 경비 요약</h2>
+<section class="card"><table><tbody>
+<tr><td>항공권 · 숙박 · 오송 족발</td><td>1,315,000원</td></tr>
+<tr><td>현대카드 결제 전체</td><td>841,282원</td></tr>
+<tr><td>트래블월렛 · 현금 순사용</td><td>376,587원</td></tr>
+<tr class="total"><td>전체 여행 관련 지출</td><td>2,532,869원</td></tr>
+<tr><td>공동 경비</td><td>2,171,998원</td></tr>
+<tr><td>본인 개인 지출</td><td>84,158원</td></tr>
+<tr><td>친구 개인 쇼핑</td><td>276,713원</td></tr>
+</tbody></table></section>
+<h2>1. 공동 경비</h2>
+<section class="card"><h3>항공권 · 숙박 · 출국 전 식사</h3><table><tbody>
+<tr><td>청주 → 기타큐슈 항공권 (2인)</td><td>309,000원</td></tr><tr><td>기타큐슈 → 청주 항공권 (2인)</td><td>529,000원</td></tr><tr><td>오송스테이 1박</td><td>90,000원</td></tr><tr><td>스마일호텔 고쿠라 3박</td><td>350,000원</td></tr><tr><td>오송 족발</td><td>37,000원</td></tr>
+<tr class="total"><td>소계</td><td>1,315,000원</td></tr></tbody></table></section>
+<div class="sectionhead"><h2>2. 날짜별 공동 카드 지출</h2><span class="muted">눌러서 상세 보기</span></div>
+<details class="card day"><summary><span>10월 8일 · 출국</span><strong>166,455원</strong><span class="arrow">⌄</span></summary><div class="tablewrap"><table><tbody><tr><td>오송 → 청주공항 택시</td><td>26,470원</td></tr><tr><td>청주공항 커피</td><td>10,600원</td></tr><tr><td>기타큐슈공항 교통비</td><td>12,176원</td></tr><tr><td>세븐일레븐</td><td>3,882원</td></tr><tr><td>고쿠라성</td><td>12,000원</td></tr><tr><td>다이소</td><td>18,859원</td></tr><tr><td>야키니쿠 니쿠큐</td><td>72,687원</td></tr><tr><td>로손</td><td>9,781원</td></tr></tbody></table></div></details>
+<details class="card day"><summary><span>10월 9일 · 기타큐슈</span><strong>116,585원</strong><span class="arrow">⌄</span></summary><div class="tablewrap"><table><tbody><tr><td>로쿠노야 다이코쿠점</td><td>31,441원</td></tr><tr><td>코메다 커피</td><td>16,491원</td></tr><tr><td>기타큐슈 아울렛 내 음료점</td><td>11,594원</td></tr><tr><td>포인트 야하타 본점 루어스타디움</td><td>18,358원</td></tr><tr><td>야하타 카도테라스</td><td>38,701원</td></tr></tbody></table></div></details>
+<details class="card day"><summary><span>10월 10일 · 기타큐슈</span><strong>195,363원</strong><span class="arrow">⌄</span></summary><div class="tablewrap"><table><tbody><tr><td>타코찬 고쿠라점</td><td>21,727원</td></tr><tr><td>타치노미 엘보 우오마치점</td><td>28,906원</td></tr><tr><td>패밀리마트</td><td>10,241원</td></tr><tr><td>야키토리잔</td><td>62,395원</td></tr><tr><td>야키토리 QUOCCA</td><td>68,199원</td></tr><tr><td>세븐일레븐</td><td>1,623원</td></tr><tr><td>로손</td><td>2,272원</td></tr></tbody></table></div></details>
+<details class="card day"><summary><span>10월 11일 · 귀국</span><strong>92,576원</strong><span class="arrow">⌄</span></summary><div class="tablewrap"><table><tbody><tr><td>카라멘 하치류</td><td>17,195원</td></tr><tr><td>대중 야키니쿠 주점 타츠보 본점</td><td>48,041원</td></tr><tr><td>청주공항 → 오송 택시</td><td>27,340원</td></tr></tbody></table></div></details>
+<section class="card"><table><tbody><tr><td>공동 카드 결제 소계</td><td>570,979원</td></tr><tr><td>트래블월렛 · 현금 공동 사용</td><td>286,019원</td></tr><tr class="total"><td>공동 경비 전체</td><td>2,171,998원</td></tr><tr class="total"><td>1인당 공동 경비 (50%)</td><td>1,085,999원</td></tr></tbody></table></section>
+<h2>3. 개인 쇼핑 (각자 부담)</h2>
+<section class="card"><h3>친구 개인 쇼핑 · 276,713원</h3><table><tbody>
+<tr><td>돈키호테 현금 쇼핑 (10,779엔)</td><td>90,568원</td></tr>
+<tr><td>이즈쓰야 · 어머니 신발</td><td>186,145원</td></tr>
+<tr class="total"><td>친구 개인 부담 합계</td><td>276,713원</td></tr></tbody></table></section>
+<section class="card"><h3>본인 개인 지출 · 84,158원</h3><table><tbody>
+<tr><td>돈키호테 고쿠라 우오마치점</td><td>61,705원</td></tr>
+<tr><td>돈키호테 고쿠라 우오마치점</td><td>9,253원</td></tr>
+<tr><td>카카오T 개인 택시</td><td>6,600원</td></tr>
+<tr><td>오송역 개인 지출</td><td>6,600원</td></tr>
+<tr class="total"><td>본인 개인 부담 합계</td><td>84,158원</td></tr></tbody></table></section>
+<h2>4. 트래블월렛 · 현금 정산</h2>
+<section class="card"><table><tbody>
+<tr><td>트래블월렛 최초 충전</td><td>1,000,000원</td></tr>
+<tr><td>최종 잔액 원화 환급 가치</td><td>-564,597원</td></tr>
+<tr><td>남은 현금 7,000엔 (본인 보유)</td><td>-58,816원</td></tr>
+<tr class="total"><td>트래블월렛 · 현금 순지출</td><td>376,587원</td></tr>
+<tr><td>친구 돈키호테 현금 쇼핑 제외</td><td>-90,568원</td></tr>
+<tr class="total"><td>공동 현금 사용액</td><td>286,019원</td></tr>
+</tbody></table><p class="muted note">현금 인출 50,000엔은 충전액 내 자금 이동이므로 중복 합산하지 않았습니다. 여행 중 함께 사용한 5,000엔은 두 사람에게 균등하게 혜택이 돌아가도록 반영했습니다.</p></section>
+<h2>5. 최종 송금 정산</h2>
+<section class="card final pad"><div class="label">친구 → 본인</div><div class="big">1,362,712원</div><table><tbody>
+<tr><td>공동 경비 부담액</td><td>1,085,999원</td></tr><tr><td>친구 개인 쇼핑</td><td>276,713원</td></tr><tr><td>기존 송금액</td><td>0원</td></tr><tr><td><strong>최종 송금액</strong></td><td><strong>1,362,712원</strong></td></tr>
+</tbody></table><p class="muted">별도 개인 결제한 관광 패스 및 정산에서 제외하기로 한 교통비는 포함하지 않았습니다.</p></section>
+<footer>기타큐슈 여행 정산 · 2026.10.11</footer></main>
+<script>document.getElementById("copy").addEventListener("click",async()=>{const s="기타큐슈 여행 정산\n공동 경비 절반: 1,085,999원\n친구 개인 쇼핑: 276,713원\n최종 송금액: 1,362,712원";try{await navigator.clipboard.writeText(s);document.getElementById("copy").textContent="복사 완료";}catch(e){prompt("아래 내용을 복사하세요",s)}});</script>
 </body></html>
